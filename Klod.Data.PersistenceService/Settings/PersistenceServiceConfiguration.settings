@@ -1,0 +1,120 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Klod.Data.PersistenceService.Settings" GeneratedClassName="PersistenceServiceConfiguration">
+  <Profiles />
+  <Settings>
+    <Setting Name="CommandTypeAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">type</Value>
+    </Setting>
+    <Setting Name="ParameterNameAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">name</Value>
+    </Setting>
+    <Setting Name="ParameterPropertyAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">property</Value>
+    </Setting>
+    <Setting Name="ParameterClassAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">class</Value>
+    </Setting>
+    <Setting Name="ParameterTypeAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">type</Value>
+    </Setting>
+    <Setting Name="ParameterDirectionAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">direction</Value>
+    </Setting>
+    <Setting Name="CommandReturnTableElement" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">returnTable</Value>
+    </Setting>
+    <Setting Name="ReturnTableNameAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">name</Value>
+    </Setting>
+    <Setting Name="ReturnTableColumnPropertyAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">property</Value>
+    </Setting>
+    <Setting Name="MapElement" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">map</Value>
+    </Setting>
+    <Setting Name="MapClassAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">class</Value>
+    </Setting>
+    <Setting Name="MapTypeAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">type</Value>
+    </Setting>
+    <Setting Name="MapStorageAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">storage</Value>
+    </Setting>
+    <Setting Name="MapStorageTypeAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">storageType</Value>
+    </Setting>
+    <Setting Name="CommandsElement" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">commands</Value>
+    </Setting>
+    <Setting Name="MappingsFileAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mappings.xml</Value>
+    </Setting>
+    <Setting Name="ParameterUseAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">use</Value>
+    </Setting>
+    <Setting Name="VersionColumnName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">version</Value>
+    </Setting>
+    <Setting Name="InUseColumnName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">inuse</Value>
+    </Setting>
+    <Setting Name="OptimisticConcurrencyErrorMessage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">The record has been changed since your last retrieval.</Value>
+    </Setting>
+    <Setting Name="PessimisticConcurrencyErrorMessage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">The record is lock by another user.</Value>
+    </Setting>
+    <Setting Name="optimisticFieldName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">version</Value>
+    </Setting>
+    <Setting Name="pessimisticFieldName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">InUse</Value>
+    </Setting>
+    <Setting Name="ReturnTableColumnNameAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">name</Value>
+    </Setting>
+    <Setting Name="PersistenceServiceAssembly" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Klod.Data.PersistenceService.Relational.SqlServer</Value>
+    </Setting>
+    <Setting Name="PersistenceServerClass" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Klod.Data.PersistenceService.Relational.SqlServer.SqlServerPersistenceServer</Value>
+    </Setting>
+    <Setting Name="ConcurrencySupport" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="Connection" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">server=localhost;initial catalog=DigitalLibraryServer;integrated security=true</Value>
+    </Setting>
+    <Setting Name="ConnectionName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">myConnection</Value>
+    </Setting>
+    <Setting Name="myConnection" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">server=localhost;initial catalog=personDb;integrated security=true;MultipleActiveResultSet=true</Value>
+    </Setting>
+    <Setting Name="ReturnTableColumnPrimaryKeyAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">primaryKey</Value>
+    </Setting>
+    <Setting Name="CommandElement" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">command</Value>
+    </Setting>
+    <Setting Name="CommandIdDataTypeAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">idDataType</Value>
+    </Setting>
+    <Setting Name="CommandNameAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">name</Value>
+    </Setting>
+    <Setting Name="CommandParametersElement" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">parameters</Value>
+    </Setting>
+    <Setting Name="CommandTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="ParameterTokenAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">token</Value>
+    </Setting>
+    <Setting Name="PersistenceServiceAssemblyLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Z:\Users\klod\Documents\Projects\PersistenceServiceFramework.v4\Klod.Data.PersistenceService.Relational.SqlServer\bin\Release\Klod.Data.PersistenceService.Relational.SqlServer.dll</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

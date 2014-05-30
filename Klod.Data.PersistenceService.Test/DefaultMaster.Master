@@ -1,0 +1,25 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DefaultMaster.master.cs" Inherits="Klod.Data.PersistenceService.Test.DefaultMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Test site</title>
+</head>
+<body>
+    <div>
+	    <table>
+		    <tr>
+			    <td>
+        <asp:ContentPlaceHolder ID="cph1" runat="server">
+        </asp:ContentPlaceHolder>
+			    </td>
+			    <td>
+	    <asp:ContentPlaceHolder ID="cph2" runat="server">
+	    </asp:ContentPlaceHolder>
+			    </td>
+		    </tr>
+	    </table>
+    </div>
+</body>
+</html>

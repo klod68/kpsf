@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="mappings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="map">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="table">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" name="column">
+											<xs:complexType>
+												<xs:attribute name="name" type="xs:string" use="required" />
+												<xs:attribute name="property" type="xs:string" use="required" />
+												<xs:attribute name="primaryKey" type="xs:boolean" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="commands">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" name="command">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element minOccurs="0" name="parameters">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element maxOccurs="unbounded" name="parameter">
+																	<xs:complexType>
+																		<xs:attribute name="name" type="xs:string" use="required" />
+																		<xs:attribute name="property" type="xs:string" use="required" />
+																		<xs:attribute name="type" type="xs:string" use="required" />
+																		<xs:attribute name="direction" type="xs:string" use="required" />
+																		<xs:attribute name="class" type="xs:string" use="optional" />
+																		<xs:attribute name="token" type="xs:string" use="optional" />
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element minOccurs="0" name="returnTable">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element maxOccurs="unbounded" name="column">
+																	<xs:complexType>
+																		<xs:attribute name="name" type="xs:string" use="required" />
+																		<xs:attribute name="property" type="xs:string" use="optional" />
+																		<xs:attribute name="primaryKey" type="xs:boolean" use="optional" />
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="name" type="xs:string" use="required" />
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="name" type="xs:string" use="required" />
+												<xs:attribute name="type" type="xs:string" use="required" />
+												<xs:attribute name="idDataType" type="xs:string" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="type" type="xs:string" use="required" />
+						<xs:attribute name="class" type="xs:string" use="required" />
+						<xs:attribute name="storage" type="xs:string" use="required" />
+						<xs:attribute name="storageType" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

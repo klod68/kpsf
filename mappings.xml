@@ -1,0 +1,1739 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<mappings>
+	<!--map template-->
+	<!--REMEMBER: CASE SENSITIVE-->
+	<!--<map type="relational" class="Namespace.class" storage="Schema.Table" storageType="table">
+		<table>
+			<column name="ColumnName" property="PropertyName" primaryKey="true|false"/>
+			<column name="ColumnName" property="PropertyName"/> 
+		</table>
+		<commands>
+			<command name="schema.storedprocedure" type="CRUD enumeration types or custom strings" idDataType="datatype" > idDataType is needed for Create commands
+				<parameters>Parameters collection are optional. Not needed for return all commands
+					<parameter name="@parameter" property="Property" type="int|varchar(50),etc." direction="Input|Output" class="Namespace.Class"></parameter>				 
+				</parameters>
+				<returnTable>Optional. Must be a parameters collection, a returnTable or both.
+					If the espected value is of a record to construct an object then the property values are needed
+					<column name="ColumnName" property="PropertyName" primaryKey="true|false"></column> primaryKey attribute is needed for define the PO correctly with an OID			 
+					Property name value of ID is interpreteed as a reference key of another record (FK) or another value not associated with the mapped object.
+				</returnTable>
+			</command>	   	
+		</commands>
+	</map>-->
+	<!--NOTE: This is a sample mapping file. Eventually it must be neccessary to define namespaces and a schema-->
+	<!--ContactCenter classes mapping-->
+	<map type="relational" class="Innova.ContactCenter.PhoneService.CallCenterAgent" storage="[Demographic].[Agents]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="FirstName" property="FirstName" />
+			<column name="MiddleName" property="Middlename" />
+			<column name="LastName1" property="LastName1" />
+			<column name="LastName2" property="LastName2" />
+			<column name="CMSLoginId" property="" />
+		</table>
+		<commands>
+			<command name="[Demographic].[RetrieveAllAgents]" type="RetrieveAll">
+				<returnTable name="Agents">
+					<column name="Id" property="ID"/>
+					<column name="FirstName" property="Firstname"/>
+					<column name="MiddleName" property="MiddleName"/>
+					<column name="LastName1" property="LastName1"/>
+					<column name="LastName2" property="LastName2"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[RetrieveAgent]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="uniqueidentifier" direction="Input"/>
+				</parameters>
+				<returnTable name="Agent">
+					<column name="FirstName" property="FirstName"/>
+					<column name="MiddleName" property="MiddleName"/>
+					<column name="LastName1" property="LastName1"/>
+					<column name="LastName2" property="LastName2"/>
+					<column name="TypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[CreateAgent]" type="Create" idDataType="uniqueidentifier">
+				<parameters>
+					<parameter name="@id" property="ID" type="uniqueidentifier" direction="Input" class="Innova.ContactCenter.Persistence.AgentID"/>
+					<parameter name="@firstName" property="FirstName" type="varchar(50)" direction="Input"/>
+					<parameter name="@middleName" property="MiddleName" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName1" property="LastName1" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName2" property="LastName2" type="varchar(50)" direction="Input"/>
+					<parameter name="@agentTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID" />
+				</parameters>
+			</command>
+			<command name="[Demographic].[UpdateAgent]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="uniqueidentifier" direction="Input" class="Innova.ContactCenter.Persistence.AgentID"/>
+					<parameter name="@firstName" property="FirstName" type="varchar(50)" direction="Input"/>
+					<parameter name="@middleName" property="MiddleName" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName1" property="LastName1" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName2" property="LastName2" type="varchar(50)" direction="Input"/>
+					<parameter name="@agentTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.Phone" storage="[Device].[PhoneStations]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="AreaCode" property="AreaCode" />
+			<column name="Number" property="Number" />
+			<column name="ExtensionNumber" property="ExtensionNumber" />
+		</table>
+		<commands>
+			<command name="[Device].[RetrieveAllPhoneStations]" type="RetrieveAll">
+				<returnTable name="PhoneStations">
+					<column name="Id" property="ID"/>
+					<column name="ExtensionNumber" property="ExtensionNumber"/>
+				</returnTable>
+			</command>
+			<command name="[Device].[RetrievePhoneStation]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PhoneStation">
+					<column name="AreaCode" property="AreaCode"/>
+					<column name="Number" property="Number"/>
+					<column name="ExtensionNumber" property="ExtensionNumber"/>
+				</returnTable>
+			</command>
+			<command name="[Device].[CreatePhoneStation]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="" type="int" direction="ReturnValue"/>
+					<parameter name="@areaCode" property="AreaCode" type="varchar(3)" direction="Input"/>
+					<parameter name="@number" property="Number" type="varchar(15)" direction="Input"/>
+					<parameter name="@extensionNumber" property="ExtensionNumber" type="varchar(10)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Device].[UpdatePhoneStation]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.PhoneStationID"/>
+					<parameter name="@areaCode" property="AreaCode" type="varchar(3)" direction="Input"/>
+					<parameter name="@number" property="Number" type="varchar(15)" direction="Input"/>
+					<parameter name="@extensionNumber" property="ExtensionNumber" type="varchar(10)" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.Script" storage="[Communication].[Scripts]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="Name" property="Name" />
+			<column name="Description" property="Description" />
+			<column name="BeginIn" property="BeginIn" />
+			<column name="EndAt" property="EndAt"/>
+			<column name="ScriptTypeId" property="" />
+			<column name="ScriptContentTypeId" property="" />
+			<column name="TotalValue" property="TotalValue" />
+		</table>
+		<commands>
+			<command name="[Communication].[RetrieveAllScripts]" type="RetrieveAll">
+				<returnTable name="Scripts">
+					<column name="ScriptId" property="ID" primaryKey="true"/>
+					<column name="Script" property="Name"/>
+					<column name="Description" property="Description"/>
+					<column name="BeginIn" property="BeginIn"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="ScriptTypeId" property="ID" />
+					<column name="ScriptContentTypeId" property="ID" />
+					<column name="ScriptFormulaTypeId" property="ID"/>
+					<column name="TotalValue" property="TotalValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllActiveScripts]" type="RetrieveAllActiveScripts">
+				<returnTable name="ActiveScripts">
+					<column name="ScriptId" property="ID" primaryKey="true"/>
+					<column name="Script" property="Name"/>
+					<column name="Description" property="Description"/>
+					<column name="BeginIn" property="BeginIn"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="ScriptTypeId" property="ID" />
+					<column name="ScriptContentTypeId" property="ID" />
+					<column name="ScriptFormulaTypeId" property="ID"/>
+					<column name="TotalValue" property="TotalValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllActiveScriptsByCriteria]" type="RetrieveAllActiveScriptsByCriteria">
+				<parameters>
+					<parameter name="@criteria" property="SearchCriteria" type="varchar(1000)" direction="Input" />
+				</parameters>
+				<returnTable name="Scripts">
+					<column name="ScriptId" property="ID" primaryKey="true"/>
+					<column name="Name" property=""/>
+					<column name="Description" property=""/>
+					<column name="ScriptContentTypeId" property=""/>
+					<column name="ScriptTypeId" property=""/>
+					<column name="ScriptFormulaTypeId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllActiveScriptsByService]" type="RetrieveAllActiveScriptsByService">
+				<parameters>
+					<parameter name="@serviceId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="Scripts">
+					<column name="ScriptId" property="ID"/>
+					<column name="Script" property="Name"/>
+					<column name="Description" property="Description"/>
+					<column name="BeginIn" property="BeginIn"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="ScriptTypeId" property="ID" />
+					<column name="ScriptContentTypeId" property="ID" />
+					<column name="ScriptFormulaTypeId" property="ID"/>
+					<column name="TotalValue" property="TotalValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllActiveScriptsByServiceContentTypeAndCriteria]" type="RetrieveAllActiveScriptsByServiceContentTypeAndCriteria">
+				<parameters>
+					<parameter name="@serviceId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ServiceID"/>
+					<parameter name="@contentTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@criteria" property="Value" type="varchar(1000)" direction="Input" class="Innova.Persistence.LiteralProperty" />
+				</parameters>
+				<returnTable name="Scripts">
+					<column name="ScriptId" property="ID" primaryKey="true"/>
+					<column name="Name" property=""/>
+					<column name="Description" property=""/>
+					<column name="BeginIn" property="BeginIn"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="ScriptContentTypeId" property=""/>
+					<column name="ScriptTypeId" property=""/>
+					<column name="ScriptFormulaTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[CreateScript]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(500)" direction="Input"/>
+					<parameter name="BeginIn" property="BeginIn" type="datetime" direction="Input"/>
+					<parameter name="EndAt" property="EndAt" type="datetime" direction="Input"/>
+					<parameter name="@scriptTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@scriptContentTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@scriptFormulaTypeId" property="ID" type="tinyint" direction="Input" class="Innova.ContactCenter.Persistence.GenericID"/>
+					<parameter name="@totalValue" property="TotalValue" type="decimal(18,4)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[RetrieveScript]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="Scripts">
+					<column name="Name" property="Name"/>
+					<column name="Description" property="Description"/>
+					<column name="ScriptTypeId" property="ID"/>
+					<column name="TotalValue" property="TotalValue"/>
+					<column name="BeginIn" property="BeginIn"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="ScriptContentTypeId" property="ID"/>
+					<column name="ScriptFormulaTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveMandatoryScript]" type="RetrieveMandatoryScript">
+				<parameters>
+					<parameter name="@serviceId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ServiceID"/>
+					<parameter name="@mandatoryTypeId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+				<returnTable name="MandatoryScript">
+					<column name="ScriptId" property="ID" primaryKey="true"/>
+					<column name="Name" property="Name"/>
+					<column name="Description" property="Description"/>
+					<column name="ScriptTypeId" property="ID"/>
+					<column name="TotalValue" property="TotalValue"/>
+					<column name="BeginIn" property="BeginIn"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="ScriptContentTypeId" property="ID"/>
+					<column name="ScriptFormulaTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[UpdateScript]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(500)" direction="Input"/>
+					<parameter name="EndAt" property="EndAt" type="datetime" directin="Input"/>
+					<parameter name="@totalValue" property="TotalValue" type="decimal(18,4)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScript]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ScriptValueInterpreter" storage="[Communication].[ScriptValuesInterpretations]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="MinValue" property="" />
+			<column name="MaxValue" property="" />
+			<column name="Name" property="" />
+			<column name="Description" property="" />
+			<column name="ScriptId" property="" />
+		</table>
+		<commands>
+			<command name="[Communication].[RetrieveAllScriptValuesInterpretations]" type="RetrieveAllScriptValuesInterpretations">
+				<parameters>
+					<parameter name="@scriptId" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptValuesInterpretations">
+					<column name="Id" property="ID" />
+					<column name="MinValue" property=""/>
+					<column name="MaxValue" property=""/>
+					<column name="Name" property=""/>
+					<column name="Description" property=""/>
+					<column name="ScriptId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveScriptValuesInterpretation]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptValuesInterpretations">
+					<column name="MinValue" property="MinValue"/>
+					<column name="MaxValue" property="MaxValue"/>
+					<column name="Name" property="Name"/>
+					<column name="Description" property="Description"/>
+					<column name="ScriptId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveScriptValuesInterpretationByValue]" type="RetrieveScriptValuesInterpretationByValue">
+				<parameters>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@value" property="Value" type="decimal(18,4)" direction="Input" class="Innova.ContactCenter.LiteralProperty"/>
+				</parameters>
+				<returnTable name="ScriptValuesInterpretation">
+					<column name="MinValue" property="MinValue"/>
+					<column name="MaxValue" property="MaxValue"/>
+					<column name="Name" property="Name"/>
+					<column name="Description" property="Description"/>
+				</returnTable>
+			</command>
+			<command name="[Operation].[RetrieveAllResponsesValuesSum]" type="RetrieveAllResponsesValuesSum">
+				<parameters>
+					<parameter name="@interactionId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+				</parameters>
+				<returnTable name="ResponseTotalValue">
+					<column name="ResponseTotalValue" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[CreateScriptValuesInterpretation]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@minValue" property="MinValue" type="decimal(18,4)" direction="Input"/>
+					<parameter name="@maxValue" property="MaxValue" type="decimal(18,4)" direction="Input"/>
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(250)" direction="Input"/>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[UpdateScriptValuesInterpretation]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@minValue" property="MinValue" type="decimal(18,4)" direction="Input"/>
+					<parameter name="@maxValue" property="MaxValue" type="decimal(18,4)" direction="Input"/>
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(250)" direction="Input"/>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScriptValuesInterpretation]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ScriptItem" storage="[Communication].[ScriptItems]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="Text" property="Text" />
+			<column name="ScriptItemTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[Communication].[RetrieveAllScriptItems]" type="RetrieveAll">
+				<returnTable name="ScriptItems">
+					<column name="Id" property="ID"/>
+					<column name="Text" property="Text"/>
+					<column name="ScriptItemTypeId" property=""/>
+				</returnTable>
+			</command>
+
+			<command name="[Communication].[RetrieveAllScriptItemsByCriteria]" type="RetrieveAllScriptItemsByCriteria">
+				<parameters>
+					<parameter name="@criteria" property="SearchCriteria" type="varchar(1000)" direction="Input" />
+				</parameters>
+				<returnTable name="ScriptItems">
+					<column name="ID" property="ID" primaryKey="true"/>
+					<column name="Text" property=""/>
+					<column name="Comment" property=""/>
+					<column name="TypeName" property=""/>
+					<column name="TypeDescription" property=""/>
+				</returnTable>
+			</command>
+
+			<command name="[Communication].[RetrieveScriptItem]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptItem">
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+					<column name="ScriptItemTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[CreateScriptItem]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@text" property="Text" type="varchar(2000)" direction="Input"/>
+					<parameter name="@comment" property="Comment" type="varchar(5000)" direction="Input"/>
+					<parameter name="@scriptItemTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[UpdateScriptItem]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemID"/>
+					<parameter name="@text" property="Text" type="varchar(2000)" direction="Input"/>
+					<parameter name="@comment" property="Comment" type="varchar(5000)" direction="Input"/>
+					<parameter name="@scriptItemTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScriptItem]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ScriptItemDetail" storage="[Communication].[ScriptItemDetails]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="Text" property="Text" />
+			<column name="Comment" property="Comment" />
+			<column name="ScriptItemDetailTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[Communication].[RetrieveAllScriptItemDetails]" type="RetrieveAll">
+				<returnTable name="ScriptItemDetails">
+					<column name="Id" property="ID"/>
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+					<column name="ScriptItemDetailTypeId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllScriptItemDetailsByCriteria]" type="RetrieveAllScriptItemDetailsByCriteria">
+				<parameters>
+					<parameter name="@criteria" property="SearchCriteria" type="varchar(1000)" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptItemDetails">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+					<column name="TypeName" property="Name"/>
+					<column name="TypeDescription" property="Description"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllScriptItemDetailsByType]" type="RetrieveAllByType">
+				<parameters>
+					<parameter name="@scriptItemDetailTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+				<returnTable name="ScriptItemDetails">
+					<column name="Id" property="ID"/>
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveScriptItemDetail]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptItemDetails">
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+					<column name="ScriptItemDetailTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[CreateScriptItemDetail]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@text" property="Text" type="varchar(2000)" direction="Input"/>
+					<parameter name="@comment" property="Comment" type="varchar(5000)" direction="Input"/>
+					<parameter name="@scriptItemDetailTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[UpdateScriptItemDetail]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemDetailID"/>
+					<parameter name="@comment" property="Comment" type="varchar(5000)" direction="Input"/>
+					<parameter name="@scriptItemDetailTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScriptItemDetail]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ScriptItemInstance" storage="[Communication].[ScriptItemInstances]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="ScriptItemId" property="" />
+			<column name="ScriptItemInstanceTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[Communication].[RetrieveAllScriptItemInstances]" type="RetrieveAll">
+				<returnTable name="ScriptItemInstances">
+					<column name="Id" property="ID"/>
+					<column name="ScriptItemId" property="ScriptItemId" />
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllScriptDetailsByScript]" type="RetrieveAllScriptDetailsByScript">
+				<parameters>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptDetails">
+					<column name="ItemId" property=""/>
+					<column name="ScriptItemInstanceId" property="" />
+					<column name="Item" property="Text"/>
+					<column name="ItemPosition" property="ItemPosition"/>
+					<column name="MaxValue" property="MaxValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveAllScriptItemInstancesByCriteria]" type="RetrieveAllScriptItemInstancesByCriteria">
+				<parameters>
+					<parameter name="@criteria" property="SearchCriteria" type="varchar(1000)" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptDetails">
+					<column name="Id" property="ID"/>
+					<column name="ScriptItemInstanceId" property="ID" />
+					<column name="Text" property="Text"/>
+					<column name="Comment" property="Comment"/>
+					<column name="ItemPosition" property="ItemPosition"/>
+					<column name="MaxValue" property="MaxValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveNextScriptDetail]" type="RetrieveNextScriptDetail">
+				<parameters>
+					<parameter name="@nextScriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@nextScriptDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptDetailID"/>
+					<parameter name="@itemPosition" property="Value" type="smallint" direction="Input" class="Innova.ContactCenter.LiteralProperty"/>
+				</parameters>
+				<returnTable name="ScriptDetail">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="ScriptId" property="ID"/>
+					<column name="ScriptItemInstanceId" property="ID"/>
+					<column name="ScriptItemInstanceTypeId" property="ID"/>
+					<column name="ScriptItem" property="Text" />
+					<column name="ScriptItemComment" property="Comment"/>
+					<column name="ItemPosition" property="Position"/>
+					<column name="MaxValue" property="MaxValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveScriptItemInstanceByScriptDetail]" type="RetrieveScriptItemInstanceByScriptDetail">
+				<parameters>
+					<parameter name="@scriptDetailId" property="ID" type="int" direction="Input" />
+				</parameters>
+				<returnTable name="ScriptItemInstance">
+					<column name="ScriptItemInstanceId" property="ID" primaryKey="true"/>
+					<column name="ScriptDetailId" property="ID"/>
+					<column name="Item" property="Text" />
+					<column name="ItemPosition" property="Position"/>
+					<column name="MaxValue" property="MaxValue"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[CreateScriptItemInstance]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@scriptItemId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemID"/>
+					<parameter name="@scriptItemInstanceTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[CreateScriptDetail]" type="CreateScriptDetail" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@scriptItemInstanceId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemInstanceID"/>
+					<parameter name="@itemPosition" property="Position" type="smallint" direction="Input"/>
+					<parameter name="@maxValue" property="MaxValue" type="decimal(18,4)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[CreateScriptDetailAndInstance]" type="CreateScriptDetailAndInstance" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@scriptItemId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemID"/>
+					<parameter name="@scriptItemInstanceTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@itemPosition" property="Position" type="smallint" direction="Input"/>
+					<parameter name="@maxValue" property="MaxValue" type="decimal(18,4)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[UpdateScriptDetail]" type="UpdateScriptDetail">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptDetailID"/>
+					<parameter name="@itemPosition" property="Position" type="smallint" direction="Input"/>
+					<parameter name="@maxValue" property="MaxValue" type="decimal(18,4)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScriptItemInstance]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScriptDetail]" type="DeleteScriptDetail">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ScriptItemDetailInstance" storage="[Communication].[ScriptItemDetailInstances]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="ScriptItemInstanceId" property="" />
+			<column name="ScriptItemDetailId" property="" />
+			<column name="Value" property="Value" />
+			<column name="Position" property="Position" />
+			<column name="NextScriptId" property="" />
+			<column name="NextScriptDetailId" property="" />
+		</table>
+		<commands>
+			<command name="[Communication].[RetrieveAllScriptItemDetailInstancesByScriptItemInstance]" type="RetrieveAllScriptItemDetailInstancesByScriptItemInstance">
+				<parameters>
+					<parameter name="@scriptItemInstanceId" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptItemDetailInstances">
+					<column name="DetailId" property=""/>
+					<column name="Detail" property=""/>
+					<column name="Value" property=""/>
+					<column name="Position" property=""/>
+					<column name="NextScriptId" property=""/>
+					<column name="NextScriptDetailId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[RetrieveScriptItemDetailInstance]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ScriptItemDetailInstances">
+					<column name="ScriptItemInstanceId" property="ID"/>
+					<column name="ScriptItemDetailId" property="ID"/>
+					<column name="Value" property="Value"/>
+					<column name="Position" property="Position"/>
+					<column name="NextScriptId" property="ID"/>
+					<column name="NextScriptDetailId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Communication].[CreateScriptItemDetailInstance]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@scriptItemInstanceId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemInstanceID"/>
+					<parameter name="@scriptItemDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptItemDetailID"/>
+					<parameter name="@value" property="Value" type="decimal(10,4)" direction="Input"/>
+					<parameter name="@position" property="Position" type="smallint" direction="Input"/>
+					<parameter name="@nextScriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@nextScriptDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptDetailID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[UpdateScriptItemDetailInstance]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@value" property="Value" type="decimal(10,4)" direction="Input"/>
+					<parameter name="@position" property="Position" type="smallint" direction="Input"/>
+					<parameter name="@nextScriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@nextScriptDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptDetailID"/>
+				</parameters>
+			</command>
+			<command name="[Communication].[DeleteScriptItemDetailInstance]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.PhoneService.PhoneInteraction" storage="[Operation].[Interactions]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="CallServiceId" property="" />
+			<column name="ScriptId" property="" />
+			<column name="StartAt" property="" />
+			<column name="EndAt" property="" />
+		</table>
+		<commands>
+			<command name="[Operation].[CreateInteraction]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@callsServiceId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ServiceID"/>
+					<parameter name="@scriptId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptID"/>
+					<parameter name="@startAt" property="StartAt" type="datetime" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Operation].[UpdateInteraction]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionID"/>
+					<parameter name="@evaluation" property="Evaluation" type="decimal(18,4)" direction="Input" />
+					<parameter name="@endAt" property="EndAt" type="datetime" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.PhoneService.PhoneInteractionItem" storage="[Operation].[InteractionDetails]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="DeliveredAt" property="" />
+			<column name="ScriptDetailId" property="" />
+			<column name="ResponseId" property="" />
+			<column name="AgentsCallId" property="" />
+			<column name="InteractionId" property="" />
+		</table>
+		<commands>
+			<command name="[Operation].[CreateInteractionDetail]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@deliveredAt" property="DeliveredAt" type="datetime" direction="Input"/>
+					<parameter name="@scriptDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.ScriptDetailID"/>
+					<parameter name="@agentsCallId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.AgentCallID"/>
+					<parameter name="@interactionId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionID" />
+				</parameters>
+			</command>
+			<command name="[Operation].[RetrieveAllInteractionDetailsByCall]" type="RetrieveAllInteractionDetailsByCall">
+				<parameters>
+					<parameter name="@callId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="InteractionDetails">
+					<column name="CallId" property=""/>
+					<column name="Channel" property=""/>
+					<column name="Service" property=""/>
+					<column name="Script" property=""/>
+					<column name="ScriptId" property=""/>
+					<column name="InteractionDetailId" property=""/>
+					<column name="InteractionDetail" property=""/>
+					<column name="OpenResponse" property=""/>
+					<column name="Response" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Operation].[RetrieveInteractionDetail]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="InteractionDetails">
+					<column name="DeliveredAt" property="DeliveredAt" />
+					<column name="ScriptDetailId" property="ID"/>
+					<column name="AgentsCallId" property="ID"/>
+					<column name="InteractionId" property="ID"/>
+				</returnTable>
+			</command>
+			<!--<command name="[Operation].[DeleteInteractionHistory]" type="DeleteInteractionHistory">
+				<parameters>
+					<parameter name="@interactionId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionID"/>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionItemID"/>
+				</parameters>
+			</command>-->
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.PhoneService.PhoneInteractionItemNote" storage="[Operation].[InteractionDetailNotes]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="InteractionDetailId" property="ID" />
+			<column name="Note" property="Note" />
+			<column name="InteractionNoteId" property="ID" />
+		</table>
+		<commands>
+			<command name="[Operation].[RetrieveAllInteractionDetailNotesByInteractionDetail]" type="RetrieveAllInteractionDetailNotesByInteractionDetail">
+				<parameters>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="InteractionDetailNotes">
+					<column name="NoteId" property="ID" primaryKey="true"/>
+					<column name="InteractionDetailId" property="ID"/>
+					<column name="Note" property="Note"/>
+					<column name="InteractionNoteTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<!--<command name="[Operation].[RetrieveInteractionDetailNote]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="InteractionDetailNotes">
+					<column name="InteractionDetailId" property="ID"/>
+					<column name="Note" property="Note"/>
+					<column name="InteractionNoteTypeId" property="ID"/>
+				</returnTable>
+			</command>-->
+			<command name="[Operation].[CreateInteractionDetailNote]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionItemID"/>
+					<parameter name="@note" property="Note" type="varchar(MAX)" direction="Input"/>
+					<parameter name="@interactionNoteTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<!--<command name="[Operation].[UpdateInteractionDetailNote]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input"/>
+					<parameter name="@note" property="Note" type="varchar(MAX)" direction="Input"/>
+					<parameter name="@InteractionNoteTypeId" property="ID" type="tinyint" direction="Input"/>
+				</parameters>
+			</command>-->
+			<command name="[Operation].[DeleteInteractionDetailNote]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.PhoneService.PhoneResponse" storage="[Operation].[Responses]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="OpenResponse" property="" />
+			<column name="ScriptItemDetailInstanceId" property="" />
+			<column name="RespondedAt" property="" />
+		</table>
+		<commands>
+			<command name="[Operation].[CreateResponse]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@openResponse" property="Content" type="varchar(MAX)" direction="Input"/>
+					<parameter name="@scriptItemDetailInstanceId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@respondedAt" property="RespondedAt" type="datetime" direction="Input"/>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionItemID"/>
+				</parameters>
+			</command>
+			<command name="[Operation].[RetrieveAllResponsesByInteractionDetail]" type="RetrieveAllResponsesByInteractionDetail">
+				<parameters>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="ResponsesByInteractionDetail">
+					<column name="ResponseId" property="ID" primaryKey="true"/>
+					<column name="OpenResponse" property="OpenResponse" />
+					<column name="ScriptItemDetailInstanceId" property="ID"/>
+					<column name="RespondedAt" property="RespondedAt"/>
+					<column name="InteractionDetailId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Operation].[DeleteResponsesByInteractionDetail]" type="DeleteAllResponsesByInteractionDetail">
+				<parameters>
+					<parameter name="@interactionDetailId" property="ID" type="int" direction="Input" class="Innova.ContactCenter.Persistence.InteractionItemID"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+
+	<!--HealthCare classes mapping-->
+	<map type="relational" class="Innova.HealthCare.Condition.GenericHealthCondition" storage="[MedicalRecord].[HealthConditions]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="Condition" property="" />
+			<column name="Description" property="" />
+			<column name="HealthConditionTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[CreateHealthCondition]" type="Create" idDataType="smallint">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="smallint" direction="ReturnValue"/>
+					<parameter name="@condition" property="Condition" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(100)" direction="Input"/>
+					<parameter name="@healthConditionTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[RetrieveAllHealthConditions]" type="RetrieveAll">
+				<returnTable name="HealthConditions">
+					<column name="Id" property="ID"/>
+					<column name="Condition" property=""/>
+					<column name="Description" property=""/>
+					<column name="HealthConditionTypeId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrieveAllHealthConditionsByType]" type="RetrieveAllHealthConditionsByType">
+				<parameters>
+					<parameter name="@healthConditionTypeId" property="" type="tinyint" direction="Input"/>
+				</parameters>
+				<returnTable name="HealthConditions">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="Condition" property="Condition"/>
+					<column name="Description" property="Description"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrieveHealthCondition]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="smallint" direction="Input"/>
+				</parameters>
+				<returnTable name="HealthConditions">
+					<column name="Condition" property="Condition"/>
+					<column name="Description" property="Description"/>
+					<column name="HealthConditionTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[UpdateHealthCondition]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="smallint" direction="Input" class="Innova.HealthCare.Persistence.HealthConditionID"/>
+					<parameter name="@condition" property="Condition" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(100)" direction="Input"/>
+					<parameter name="@healthConditionTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeleteHealthCondition]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="smallint" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Procedure.GenericMedicalProcedure" storage="[MedicalRecord].[MedicalProcedures]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="Procedure" property="" />
+			<column name="Description" property="" />
+			<column name="MedicalProcedureTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[RetrieveAllMedicalProcedures]" type="RetrieveAll">
+				<returnTable name="MedicalProcedures">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="Procedure" property="Procedure"/>
+					<column name="Description" property="Description"/>
+					<column name="MedicalProcedureTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrieveAllMedicalProceduresByType]" type="RetrieveAllMedicalProceduresByType">
+				<parameters>
+					<parameter name="@medicalProcedureTypeId" property="ID" type="tinyint" direction="Input"/>
+				</parameters>
+				<returnTable name="MedicalProcedures">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="Procedure" property="Procedure"/>
+					<column name="Description" property="Description"/>
+					<column name="MedicalProcedureTypeId" property="ID"/>
+				</returnTable>
+			</command>
+
+			<command name="[MedicalRecord].[RetrieveMedicalProcedure]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="MedicalProcedure">
+					<column name="Procedure" property="Procedure"/>
+					<column name="Description" property="Description"/>
+					<column name="MedicalProcedureTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[CreateMedicalProcedure]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@procedure" property="Procedure" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(100)" direction="Input"/>
+					<parameter name="@medicalProcedureTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[UpdateMedicalProcedure]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.MedicalProcedureID"/>
+					<parameter name="@procedure" property="Procedure" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(100)" direction="Input"/>
+					<parameter name="@medicalProcedureTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeleteMedicalProcedure]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+
+	<!--Patient demographic classes mapping-->
+	<map type="relational" class="Innova.HealthCare.Demography.PatientAddress" storage="[Demographic].[Addresses]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="Line1" property="Line1" />
+			<column name="Line2" property="Line2" />
+			<column name="City" property="City" />
+			<column name="StateProvinceId" property="ID" />
+			<column name="ZipCode" property="ZipCode" />
+			<column name="ZipCodePlus" property="ZipCodePlus" />
+			<column name="AddressTypeId" property="ID" />
+		</table>
+		<commands>
+			<command name="[Demographic].[CreatePatientAddress]" type="CreatePatientAddress" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID" />
+					<parameter name="@line1" property="Line1" type="varchar(50)" direction="Input"/>
+					<parameter name="@line2" property="Line2" type="varchar(50)" direction="Input"/>
+					<parameter name="@city" property="City" type="varchar(50)" direction="Input"/>
+					<parameter name="@stateProvinceId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@countryRegionId" property="ISOCountryCode" type="nchar(2)" direction="Input" />
+					<parameter name="@zipCode" property="ZipCode" type="varchar(15)" direction="Input"/>
+					<parameter name="@zipCodePlus" property="ZipCodePlus" type="char(4)" direction="Input"/>
+					<parameter name="@addressTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@isActive" property="IsActive" type="bit" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Demographic].[RetrieveAllAddressesByPatient]" type="RetrieveAllAddressesByPatient">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientAddresses">
+					<column name="PatientAddressId" property=""  primaryKey="true"/>
+					<column name="Address" property=""/>
+					<column name="City" property="City"/>
+					<column name="StateProvinceId" property="ID"/>
+					<column name="CountryRegionId" property="ISOCountryCode"/>
+					<column name="ZipCode" property="ZipCode"/>
+					<column name="ZipCodePlus" property="ZipCodePlus"/>
+					<column name="AddressType" property=""/>
+					<column name="IsActive" property="IsActive"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[RetrievePatientAddress]" type="RetrievePatientAddress">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientAddress">
+					<column name="Line1" property="Line1"/>
+					<column name="Line2" property="Line2"/>
+					<column name="City" property="City"/>
+					<column name="StateProvinceId" property="ID"/>
+					<column name="CountryRegionId" property="ISOCountryCode"/>
+					<column name="ZipCode" property="ZipCode"/>
+					<column name="ZipCodePlus" property="ZipCodePlus"/>
+					<column name="AddressTypeId" property="ID"/>
+					<column name="IsActive" property="IsActive"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[UpdatePatientAddress]" type="UpdatePatientAddress">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.AddressID"/>
+					<parameter name="@line1" property="Line1" type="varchar(50)" direction="Input"/>
+					<parameter name="@line2" property="Line2" type="varchar(50)" direction="Input"/>
+					<parameter name="@city" property="City" type="varchar(50)" direction="Input"/>
+					<parameter name="@stateProvinceId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@countryRegionId" property="ISOCountryCode" type="nchar(2)" direction="Input" />
+					<parameter name="@zipCode" property="ZipCode" type="varchar(15)" direction="Input"/>
+					<parameter name="@zipCodePlus" property="ZipCodePlus" type="char(4)" direction="Input"/>
+					<parameter name="@addressTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@isActive" property="IsActive" type="bit" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Demography.PatientPhone" storage="[Demographic].[PhoneNumbers]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="AreaCode" property="" />
+			<column name="Number" property="" />
+			<column name="ExtensionNumber" property="" />
+			<column name="PhoneNumberTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[Demographic].[RetrieveAllPhoneNumbersByPatient]" type="RetrieveAllPhoneNumbersByPatient">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientPhoneNumbers">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="AreaCode" property="AreaCode"/>
+					<column name="Number" property="Number"/>
+					<column name="ExtensionNumber" property="ExtensionNumber"/>
+					<column name="IsPrimary" property="IsPrimary"/>
+					<column name="IsActive" property="IsActive"/>
+					<column name="PhoneNumberTypeId" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[CreatePatientPhoneNumber]" type="CreatePatientPhoneNumber" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID" />
+					<parameter name="@areaCode" property="AreaCode" type="char(3)" direction="Input"/>
+					<parameter name="@number" property="Number" type="char(7)" direction="Input"/>
+					<parameter name="@extensionNumber" property="ExtensionNumber" type="char(4)" direction="Input"/>
+					<parameter name="@phoneNumberTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@isActive" property="IsActive" type="bit" direction="Input"/>
+					<parameter name="@isPrimary" property="IsPrimary" type="bit" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Demographic].[RetrievePatientPhoneNumber]" type="RetrievePatientPhoneNumber">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PhoneNumbers">
+					<column name="AreaCode" property="AreaCode"/>
+					<column name="Number" property="Number"/>
+					<column name="ExtensionNumber" property="ExtensionNumber"/>
+					<column name="PhoneNumberTypeId" property="ID"/>
+					<column name="IsActive" property="IsActive"/>
+					<column name="IsPrimary" property="IsPrimary"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[UpdatePatientPhoneNumber]" type="UpdatePatientPhoneNumber">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@areaCode" property="AreaCode" type="char(3)" direction="Input"/>
+					<parameter name="@number" property="Number" type="char(7)" direction="Input"/>
+					<parameter name="@extensionNumber" property="ExtensionNumber" type="char(4)" direction="Input"/>
+					<parameter name="@phoneNumberTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@isActive" property="IsActive" type="bit" direction="Input"/>
+					<parameter name="@isPrimary" property="IsPrimary" type="bit" direction="Input"/>
+				</parameters>
+			</command>
+
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Demography.PatientEmailAddress" storage="[Demographic].[WebLocations]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="Address" property="Address" />
+			<column name="IsPrimary" property="IsPrimary" />
+			<column name="WebTypeId" property="ID" />
+		</table>
+		<commands>
+			<command name="[Demographic].[RetrieveAllEmailAddressesByPatient]" type="RetrieveAllEmailAddressesByPatient">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientEmailAddresses">
+					<column name="PatientEmailId" property=""/>
+					<column name="Email" property=""/>
+					<column name="IsPrimary" propperty="" />
+					<column name="WebType" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[CreatePatientEmailAddress]" type="CreatePatientEmailAddress" idDataType="int" >
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID" />
+					<parameter name="@email" property="Address" type="varchar(255)" direction="Input" />
+					<parameter name="@webTypeId" property="ID" type="tinyint" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+					<parameter name="@isPrimary" property="IsPrimary" type="bit" direction="Input" />
+				</parameters>
+			</command>
+
+			<command name="[Demographic].[RetrievePatientEmailAddress]" type="RetrievePatientEmailAddress">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientEmailAddress">
+					<column name="PatientEmailId" property="ID" primaryKey="true"/>
+					<column name="Email" property="Address"/>
+					<column name="IsPrimary" property="IsPrimary" />
+					<column name="WebTypeId" property="ID"/>
+				</returnTable>
+			</command>
+
+			<command name="[Demographic].[UpdatePatientEmailAddress]" type="UpdatePatientEmailAddress" >
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@email" property="Address" type="varchar(255)" direction="Input" />
+					<parameter name="@isPrimary" property="IsPrimary" type="bit" direction="Input" />
+				</parameters>
+			</command>
+
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Medication.Medicine" storage="[MedicalRecord].[Medications]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="BrandName" property="BrandName" />
+			<column name="GenericName" property="GenericName" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[RetrieveAllMedications]" type="RetrieveAll">
+				<returnTable name="Medications">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="BrandName" property="BrandName"/>
+					<column name="GenericName" property="GenericName"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrieveMedication]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="Medications">
+					<column name="BrandName" property="BrandName"/>
+					<column name="GenericName" property="GenericName"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[CreateMedication]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="" type="int" direction="ReturnValue"/>
+					<parameter name="@brandName" property="BrandName" type="varchar(50)" direction="Input"/>
+					<parameter name="@genericName" property="GenericName" type="varchar(50)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[UpdateMedication]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+					<parameter name="@brandName" property="BrandName" type="varchar(50)" direction="Input"/>
+					<parameter name="@genericName" property="GenericName" type="varchar(50)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeleteMedication]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Medication.PatientMedication" storage="[MedicalRecord].[PatientsMedications]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="PatientId" property="" />
+			<column name="MedicationId" property="" />
+			<column name="Details" property="" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[RetrieveAllPatientMedications]" type="RetrieveAllPatientMedications">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientMedications">
+					<column name="Id" property="" primaryKey="true"/>
+					<column name="PatientId" property=""/>
+					<column name="MedicationId" property=""/>
+					<column name="Dose" property=""/>
+					<column name="MassUnit" property=""/>
+					<column name="VolumeUnit" property=""/>
+					<column name="Frequency" property=""/>
+					<column name="TimeUnit" property=""/>
+					<column name="StartAt" property=""/>
+					<column name="EndAt" property=""/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrievePatientMedication]" type="RetrievePatientMedication">
+				<parameters>
+					<parameter name="@patientMedicationId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientMedication">
+					<column name="PatientId" property="ID"/>
+					<column name="MedicationId" property="ID"/>
+					<column name="Dose" property="Quantity"/>
+					<column name="MassUnit" property="ID"/>
+					<column name="VolumeUnit" property="ID"/>
+					<column name="Frequency" property="Interval"/>
+					<column name="TimeUnit" property="ID"/>
+					<column name="StartAt" property="StartAt"/>
+					<column name="EndAt" property="EndAt"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[CreatePatientMedication]" type="CreatePatientMedication" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID"/>
+					<parameter name="@medicationId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.MedicationID"/>
+					<parameter name="@details" property="Value" type="xml" direction="Input" class="Innova.Persistence.LiteralProperty"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[UpdatePatientMedication]" type="UpdatePatientMedication" >
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@medicationId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.MedicationID"/>
+					<parameter name="@details" property="Value" type="xml" direction="Input" class="Innova.Persistence.LiteralProperty"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeletePatientMedication]" type="Delete">
+				<parameters>
+					<parameter name="@patientMedicationId" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Condition.PatientHealthCondition" storage="[MedicalRecord].[PatientsHealthConditions]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="PatientId" property="" />
+			<column name="HealthConditionId" property="" />
+			<column name="Details" property="" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[RetrieveAllPatientHealthConditions]" type="RetrieveAllPatientHealthConditions">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientHealthConditions">
+					<column name="Id" property="" primaryKey="true"/>
+					<column name="PatientId" property=""/>
+					<column name="HealthConditionId" property=""/>
+					<column name="Condition" property=""/>
+					<column name="ConditionTypeId" property=""/>
+					<column name="ConditionType" property=""/>
+					<column name="StartAt" property=""/>
+					<column name="EndAt" property=""/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrieveAllPatientHealthConditionsByType]" type="RetrieveAllPatientHealthConditionsByType">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@type" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+				<returnTable name="PatientHealthConditions">
+					<column name="Id" property="" primaryKey="true"/>
+					<column name="PatientId" property=""/>
+					<column name="HealthConditionId" property=""/>
+					<column name="Condition" property=""/>
+					<column name="ConditionType" property=""/>
+					<column name="StartAt" property=""/>
+					<column name="EndAt" property=""/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrievePatientHealthCondition]" type="Retrieve">
+				<parameters>
+					<parameter name="@patientHealthConditionId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientHealthCondition">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="PatientId" property="ID"/>
+					<column name="HealthConditionId" property="ID"/>
+					<column name="ConditionType" property="ID"/>
+					<column name="StartAt" property="StartAt"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="Comment" property="Comment"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrievePatientPhysicalHealthCondition]" type="RetrievePatientPhysicalHealthCondition">
+				<parameters>
+					<parameter name="@patientHealthConditionId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientHealthCondition">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="PatientId" property="ID"/>
+					<column name="HealthConditionId" property="ID"/>
+					<column name="ConditionType" property="ID"/>
+					<column name="StartAt" property="StartAt"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="IsNormal" property="ID"/>
+					<column name="NeedAssessment" property="ID"/>
+					<column name="Comment" property="Comment"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrievePatientPregnancyHealthCondition]" type="RetrievePatientPregnancyHealthCondition">
+				<parameters>
+					<parameter name="@patientHealthConditionId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientHealthCondition">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="PatientId" property="ID"/>
+					<column name="HealthConditionId" property="ID"/>
+					<column name="ConditionType" property="ID"/>
+					<column name="Number" property="ID"/>
+					<column name="LMP" property="StartAt"/>
+					<column name="EDC" property="EndAt"/>
+					<column name="Gestations" property="ID"/>
+					<column name="Aborts" property="ID"/>
+					<column name="Comment" property="Comment"/>
+					<column name="Visit_0_8" property="ID"/>
+					<column name="Visit_9_12" property="ID"/>
+					<column name="Visit_13_16" property="ID"/>
+					<column name="Visit_17_20" property="ID"/>
+					<column name="Visit_21_24" property="ID"/>
+					<column name="Visit_25_28" property="ID"/>
+					<column name="Visit_29_32" property="ID"/>
+					<column name="Visit_33_34" property="ID"/>
+					<column name="Visit_35_36" property="ID"/>
+					<column name="Visit_37_38" property="ID"/>
+					<column name="Visit_39_40" property="ID"/>
+					<column name="Visit_41_44" property="ID"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[CreatePatientHealthCondition]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID"/>
+					<parameter name="@healthConditionId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.HealthConditionID"/>
+					<parameter name="@details" property="Value" type="xml" direction="Input" class="Innova.Persistence.LiteralProperty"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[UpdatePatientHealthCondition]" type="Update" >
+				<parameters>
+					<parameter name="@patientHealthConditionId" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@healthConditionId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.HealthConditionID"/>
+					<parameter name="@details" property="Value" type="xml" direction="Input" class="Innova.Persistence.LiteralProperty"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeletePatientHealthCondition]" type="Delete">
+				<parameters>
+					<parameter name="@patientHealthConditionId" property="ID" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Procedure.PatientMedicalProcedure" storage="[MedicalRecord].[PatientsMedicalProcedures]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="PatientId" property="" />
+			<column name="HealthFacilityId" property="" />
+			<column name="Details" property="" />
+			<column name="MedicalProcedureId" property="" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[CreatePatientMedicalProcedure]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="int" direction="ReturnValue"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID"/>
+					<parameter name="@healthFacilityId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.HealthCareFacilityID"/>
+					<parameter name="@details" property="Value" type="xml" direction="Input" class="Innova.Persistence.LiteralProperty"/>
+					<parameter name="@medicalProcedureId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.MedicalProcedureID"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[RetrieveAllPatientMedicalProcedures]" type="RetrieveAllPatientMedicalProcedures">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" />
+				</parameters>
+				<returnTable name="PatientMedicalProcedures">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="PatientId" property=""/>
+					<column name="HealthFacilityId" property=""/>
+					<column name="StartAt" property=""/>
+					<column name="EndAt" property=""/>
+					<column name="Comment" property=""/>
+					<column name="MedicalProcedureId" property=""/>
+					<column name="MedicalProcedure" property=""/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrieveAllPatientMedicalProceduresByType]" type="RetrieveAllPatientMedicalProceduresByType">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" />
+					<parameter name="@type" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleDataTypeID"/>
+				</parameters>
+				<returnTable name="PatientMedicalProcedures">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="PatientId" property=""/>
+					<column name="HealthFacilityId" property=""/>
+					<column name="StartAt" property=""/>
+					<column name="EndAt" property=""/>
+					<column name="Comment" property=""/>
+					<column name="MedicalProcedureId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrievePatientMedicalProcedure]" type="Retrieve">
+				<parameters>
+					<parameter name="@patientMedicalProcedureId" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientMedicalProcedure">
+					<column name="PatientId" property="ID"/>
+					<column name="HealthFacilityId" property="ID"/>
+					<column name="MedicalProcedureId" property="ID"/>
+					<column name="MedicalProcedureTypeId" property="ID"/>
+					<column name="StartAt" property="StartAt"/>
+					<column name="EndAt" property="EndAt"/>
+					<column name="Comment" property="Comment"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[UpdatePatientMedicalProcedure]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@healthFacilityId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.HealthCareFacilityID"/>
+					<parameter name="@details" property="Value" type="xml" direction="Input" class="Innova.Persistence.LiteralProperty"/>
+					<parameter name="@medicalProcedureId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.MedicalProcedureID"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeletePatientMedicalProcedure]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.HealthPlanClient.PrimaryCarePhysician" storage="[MedicalRecord].[PatientPrimaryHealthCareProviders]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="HealthCareProviderId" property="" />
+			<column name="PatientId" property="" />
+			<column name="StartIn" property="" />
+			<column name="EndAt" property="" />
+		</table>
+		<commands>
+			<command name="[MedicalRecord].[RetrieveAllPatientPrimaryHealthCareProvider]" type="RetrieveAllPatientPrimaryHealthCareProvider">
+				<parameters>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID"/>
+				</parameters>
+				<returnTable name="PatientPrimaryHealthCareProviders">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="HealthCareProviderId" property="ID"/>
+					<column name="PatientId" property="ID"/>
+					<column name="StartIn" property="StartAt"/>
+					<column name="EndAt" property="EndAt"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[RetrievePatientPrimaryHealthCareProvider]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="PatientPrimaryHealthCareProvider">
+					<column name="HealthCareProviderId" property="ID" primaryKey="true"/>
+					<column name="PatientId" property="ID"/>
+					<column name="StartIn" property="StartAt"/>
+					<column name="EndAt" property="EndAt"/>
+				</returnTable>
+			</command>
+			<command name="[MedicalRecord].[CreatePatientPrimaryHealthCareProvider]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="" type="int" direction="ReturnValue"/>
+					<parameter name="@healthCareProviderId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.HealthCareProviderID"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID"/>
+					<parameter name="@startIn" property="StartAt" type="datetime" direction="Input"/>
+					<parameter name="@endAt" property="EndAt" type="datetime" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[UpdatePatientPrimaryHealthCareProvider]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="int" direction="Input" class="Innova.Persistence.SimpleNumericID"/>
+					<parameter name="@healthCareProviderId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.HealthCareProviderID"/>
+					<parameter name="@patientId" property="ID" type="int" direction="Input" class="Innova.HealthCare.Persistence.PatientID"/>
+					<parameter name="@startIn" property="StartAt" type="datetime" direction="Input"/>
+					<parameter name="@endAt" property="EndAt" type="datetime" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[MedicalRecord].[DeletePatientPrimaryHealthCareProvider]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.HealthCare.Common.Physician" storage="[Demographic].[HealthCareProviders]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="FirstName" property="" />
+			<column name="MiddleName" property="" />
+			<column name="LastName1" property="" />
+			<column name="LastName2" property="" />
+			<column name="HealthCareProviderTypeId" property="" />
+		</table>
+		<commands>
+			<command name="[Demographic].[RetrieveAllHealthCareProviders]" type="RetrieveAll">
+				<returnTable name="HealthCareProviders">
+					<column name="Id" property=""/>
+					<column name="FirstName" property=""/>
+					<column name="MiddleName" property=""/>
+					<column name="LastName1" property=""/>
+					<column name="LastName2" property=""/>
+					<column name="HealthCareProviderTypeId" property=""/>
+				</returnTable>
+			</command>
+			<!--<command name="[Demographic].[RetrieveHealthCareProviders]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+				<returnTable name="HealthCareProviders">
+					<column name="FirstName" property=""/>
+					<column name="MiddleName" property=""/>
+					<column name="LastName1" property=""/>
+					<column name="LastName2" property=""/>
+					<column name="HealthCareProviderTypeId" property=""/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[CreateHealthCareProviders]" type="Create" idDataType="int">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="" type="int" direction="ReturnValue"/>
+					<parameter name="@firstName" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@middleName" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName1" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName2" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@healthCareProviderTypeId" property="" type="tinyint" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Demographic].[UpdateHealthCareProviders]" type="Update">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+					<parameter name="@firstName" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@middleName" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName1" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@lastName2" property="" type="varchar(50)" direction="Input"/>
+					<parameter name="@healthCareProviderTypeId" property="" type="tinyint" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Demographic].[DeleteHealthCareProviders]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="" type="int" direction="Input"/>
+				</parameters>
+			</command>-->
+		</commands>
+	</map>
+
+
+	<map type="relational" class="Innova.Demography.State" storage="[Demographic].[StateProvinces]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true"/>
+			<column name="Code" property="" />
+			<column name="IsoName" property="" />
+			<column name="CountryRegionId" property="" />
+		</table>
+		<commands>
+			<command name="[Demographic].[RetrieveAllStateProvinces]" type="RetrieveAll">
+				<returnTable name="StateProvinces">
+					<column name="Id" property="ID" primaryKey="true"/>
+					<column name="Code" property="Code"/>
+					<column name="IsoName" property="ISOName"/>
+					<column name="CountryRegionId" property="ID"/>
+				</returnTable>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.Demography.Country" storage="[Demographic].[CountryRegions]" storageType="table">
+		<table>
+			<column name="Id" property="ISO2" primaryKey="true"/>
+			<column name="Iso3" property="ISO3" />
+			<column name="Name" property="ISOName" />
+			<column name="PrintableName" property="PrintName" />
+			<column name="Area" property="Area" />
+			<column name="NumericCode" property="NumericCode" />
+		</table>
+		<commands>
+			<command name="[Demographic].[RetrieveAllCountryRegions]" type="RetrieveAll">
+				<returnTable name="CountryRegions">
+					<column name="Id" property="ISO2" primaryKey="true"/>
+					<column name="Iso3" property="ISO3"/>
+					<column name="Name" property="ISOName"/>
+					<column name="PrintableName" property="PrintName"/>
+					<column name="Area" property="Area"/>
+					<column name="NumericCode" property="NumericCode"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[RetrieveCountryRegion]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="" type="nchar(2)" direction="Input"/>
+				</parameters>
+				<returnTable name="CountryRegions">
+					<column name="Iso3" property="ISO3"/>
+					<column name="Name" property="ISOName"/>
+					<column name="PrintableName" property="PrintName"/>
+					<column name="Area" property="Area"/>
+					<column name="NumericCode" property="NumericCode"/>
+				</returnTable>
+			</command>
+			<command name="[Demographic].[CreateCountryRegions]" type="Create" idDataType="nchar(2)">
+				<parameters>
+					<parameter name="@id" property="ISO2" type="nchar(2)" direction="Input"/>
+					<parameter name="@iso3" property="ISO3" type="nchar(10)" direction="Input"/>
+					<parameter name="@name" property="ISOName" type="nvarchar(80)" direction="Input"/>
+					<parameter name="@printableName" property="PrintName" type="nvarchar(80)" direction="Input"/>
+					<parameter name="@area" property="Area" type="nvarchar(50)" direction="Input"/>
+					<parameter name="@numericCode" property="NumericCode" type="nchar(3)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Demographic].[UpdateCountryRegions]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ISO2" type="nchar(2)" direction="Input"/>
+					<parameter name="@iso3" property="ISO3" type="nchar(10)" direction="Input"/>
+					<parameter name="@name" property="ISOName" type="nvarchar(80)" direction="Input"/>
+					<parameter name="@printableName" property="PrintName" type="nvarchar(80)" direction="Input"/>
+					<parameter name="@area" property="Area" type="nvarchar(50)" direction="Input"/>
+					<parameter name="@numericCode" property="NumericCode" type="nchar(3)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[Demographic].[DeleteCountryRegions]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ISO2" type="nchar(2)" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+
+	<!--Data type classes mapping-->
+	<map type="relational" class="Innova.ContactCenter.Common.PersonalRelationshipDataType" storage="[EntityType].[PersonalRelationshipTypes]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="Name" property="Name" />
+			<column name="Description" property="Description" />
+		</table>
+		<commands>
+			<command name="[EntityType].[RetrieveAllPersonalRealtionshipTypes]" type="RetrieveAll">
+				<returnTable name="RelationshipTypes">
+					<column name="Id" property="ID"/>
+					<column name="Name" property="Name"/>
+				</returnTable>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ServiceDataType" storage="[EntityType].[ServiceTypes]" storageType="table">
+		<table>
+			<column name="Id" property="" primaryKey="true" />
+			<column name="Name" property="Name" />
+			<column name="Description" property="Description" />
+		</table>
+		<commands>
+			<command name="[EntityType].[RetrieveAllServiceTypes]" type="RetrieveAll">
+				<returnTable name="ServiceTypes">
+					<column name="Id" property="ID"/>
+					<column name="Name" property="Name"/>
+				</returnTable>
+			</command>
+
+			<command name="[EntityType].[RetrieveServiceTypes]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="tinyint" direction="Input" />
+				</parameters>
+				<returnTable name="ServiceTypes">
+					<column name="Name" property="Name" />
+					<column name="Description" property="Description" />
+				</returnTable>
+			</command>
+			<command name="[EntityType].[CreateServiceTypes]" type="Create" idDataType="tinyint">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="tinyint" direction="ReturnValue" />
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input" />
+					<parameter name="@description" property="Description" type="varchar(50)" direction="Input" />
+				</parameters>
+			</command>
+			<command name="[EntityType].[UpdateServiceTypes]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="tinyint" direction="Input" />
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input" />
+					<parameter name="@description" property="Description" type="varchar(50)" direction="Input" />
+				</parameters>
+			</command>
+			<command name="[EntityType].[DeleteServiceType]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="tinyint" direction="Input" />
+				</parameters>
+			</command>
+		</commands>
+	</map>
+	<map type="relational" class="Innova.ContactCenter.Common.ContactStatusDataType" storage="[EntityType].[ContactStatusTypes]" storageType="table">
+		<table>
+			<column name="Id" property="ID" primaryKey="true"/>
+			<column name="Name" property="Name" />
+			<column name="Description" property="Description" />
+		</table>
+		<commands>
+			<command name="[EntityType].[RetrieveAllContactStatusTypes]" type="RetrieveAll">
+				<returnTable name="ContactStatusTypes">
+					<column name="Id" property="ID"/>
+					<column name="Name" property="Name"/>
+					<column name="Description" property="Description"/>
+				</returnTable>
+			</command>
+			<command name="[EntityType].[RetrieveContactStatusType]" type="Retrieve">
+				<parameters>
+					<parameter name="@id" property="ID" type="tinyint" direction="Input"/>
+				</parameters>
+				<returnTable name="ContactStatusType">
+					<column name="Name" property="Name"/>
+					<column name="Description" property="Description"/>
+				</returnTable>
+			</command>
+			<command name="[EntityType].[CreateContactStatusType]" type="Create" idDataType="tinyint">
+				<parameters>
+					<parameter name="@RETURN_VALUE" property="ID" type="tinyint" direction="ReturnValue"/>
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(100)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[EntityType].[UpdateContactStatusType]" type="Update">
+				<parameters>
+					<parameter name="@id" property="ID" type="tinyint" direction="Input"/>
+					<parameter name="@name" property="Name" type="varchar(50)" direction="Input"/>
+					<parameter name="@description" property="Description" type="varchar(100)" direction="Input"/>
+				</parameters>
+			</command>
+			<command name="[EntityType].[DeleteContactStatusType]" type="Delete">
+				<parameters>
+					<parameter name="@id" property="ID" type="tinyint" direction="Input"/>
+				</parameters>
+			</command>
+		</commands>
+	</map>
+</mappings>
