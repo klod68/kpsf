@@ -6,6 +6,9 @@ using Klod.Data.PersistenceService.Persistent;
 
 namespace Klod.Data.PersistenceService.Relational.SqlServer
 {
+	/// <summary>
+	/// Implementation of a Composite operations command for SQL Server relational databases.
+	/// </summary>
 	public class SqlServerCompositeCommand : CompositeCommand
 	{
 		public SqlServerCompositeCommand() : base() { }

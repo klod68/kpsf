@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Klod.Data.PersistenceService
 {
-	//CHECK: These enumerations are the only types that the UI need to access from this
+	//CHECK: These enumerations are the only types that the UI needs to access from this
 	//namespace. Is this requirement a violation of the strict Layers Pattern?
 	//Anyway the use of enumerations as parameters for calls of the UI
 	//could be named the "Pass-enumerations-from-UI Pattern"
