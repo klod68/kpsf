@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Klod.Data.PersistenceService
 {
-	//CHECK: These enumerations are the only types that the UI could access from this
-	//namespace. Is this requirement a violation of the Layers Pattern?
+	//CHECK: These enumerations are the only types that the UI need to access from this
+	//namespace. Is this requirement a violation of the strict Layers Pattern?
 	//Anyway the use of enumerations as parameters for calls of the UI
 	//could be named the "Pass-enumerations-from-UI Pattern"
-	//Without this provision, how a UI could send messages to the Application Layer
+	//Without this provision, how a UI could send messages to the Application Layer (as a set of Controllers)
 	//without the use of Domain Layer objects? The solution is proximate to the use
 	//of the primitive types (integer, dates, text)...
 

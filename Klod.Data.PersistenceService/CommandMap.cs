@@ -87,7 +87,11 @@ namespace Klod.Data.PersistenceService
 		}
 		#endregion
 
-
+		/// <summary>
+		/// Comment
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
 		public virtual string GetProperty(int index)
 		{
 			try
