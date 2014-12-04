@@ -16,6 +16,7 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 	public class SqlServerRetrieveCommand : SqlServerPersistenceCommand
 	{
 		//variables for retrieve operation
+        //TODO: change to private scope
 		protected string[] _propertyArray2;
 		protected string[] _columnArray;
 		protected string _tableName;
