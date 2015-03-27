@@ -12,9 +12,9 @@ objectable for an object-oriented persistent layer (support for sql language and
 conditions for a full-strength persistent sub-system.
 
 The design of this persistence service is inspired by the chapter 37, "Designing a Persistence Framework with Patterns", of 
-the excellent book "Applying UML and Pattern"s by Craig Larman. This persistence framework implements two mechanisms. One similar that
+the excellent book "Applying UML and Pattern"s by Craig Larman. This persistence framework implements two mechanisms. One similar of Larman, that
 uses a database mapper (Fowler), when the client make persistent objects that combines persistence with domain data. The other use metadata-
-based mappers that reads from an XML file the mapping between object properties and columns or values of the storage mechanism.
+based mappers that reads from an XML file the link between object properties and columns or values of the storage mechanism.
 
 
 Which persistent mechanism it is supported?
@@ -27,7 +27,7 @@ objects.
 
 Is there support for transactions?
 No. I believe that transactions are a persistence mechanism element, not an object oriented persistence service feature. 
-Some mechanism (text files, for example) doesn't permit transactions, like relational databases. In these cases, if you need
+Some mechanisms (text files, for example) don't permit transactions, like relational databases. In these cases, if you need
 transaction support, then use a persistent mechanism that support it.	In SQL, relational databases, we can send all parameters,
 extracted from multiple objects, and configure an explicit transaction, for saving data into multiple tables.
 
@@ -40,15 +40,15 @@ The project implement the Ambler's object identifier pattern, with an ObjectIden
 called OID.
 
 Is there support for cursors?
-The retrive method in the PersisteServer class can return DataView, which is a non-provider class for collections of records. It can 
-return only one record or millions. In this way the control is in the client that use the method to return the number of entities
+The retrive method in the PersisteServer class can return DataViews (.NET implementation), which is a non-provider class for collections of records. It can 
+return one record or millions. In this way the control is in the client that use the method to return the number of entities
 it can handles.
 
 Is there any support for reporting tools?
 This is an object-oriented Persistence Service for applications. If the reporting tool can work with .NET classes, then it will work
 with it. Otherwise, you need to encapsulate the service and make an adapter for your reporting tool. If the tool works with your
 persistence mechanism it's recommended then that the reporting tool and your mechanism communicate directly, using the language or
-code it support.
+code it supports.
 
 Is there support for multiple architectures?
 This is a .NET framework project. If the architecture where you plan to use it, supports .NET, there's no problem to use this service.

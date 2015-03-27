@@ -4,7 +4,7 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{BEA02885-629F-4A6C-8A49-E6AE06FE98EE}"
 	ProjectSection(SolutionItems) = preProject
-		X:\mappings\mappings.xml = X:\mappings\mappings.xml
+		Mappings.xml = Mappings.xml
 		Mapping\mappings.xsd = Mapping\mappings.xsd
 		README.txt = README.txt
 	EndProjectSection
