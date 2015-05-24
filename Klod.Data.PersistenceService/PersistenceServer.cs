@@ -32,8 +32,9 @@ namespace Klod.Data.PersistenceService
 		#endregion
 
 		#region private attributes
-		//Use abstract classes for objects properties. 
-		//make them private.
+		//(Principle::Program to interfaces, not implementations. Encapsulation.) 
+		//Use abstract classes for objects properties 
+		//Make them private.
 		private PersistenceCommand _cmd = null; //delegate operations
 		private Map _map = null;
 		private object _providerConnection = null; //represent any object connection from a source provider

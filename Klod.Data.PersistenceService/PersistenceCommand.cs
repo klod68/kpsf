@@ -18,7 +18,7 @@ namespace Klod.Data.PersistenceService
 	/// </summary>
 	public abstract class PersistenceCommand
 	{
-		private CommandMap _cmdMap = null;      //holds the command xml instructions
+		private CommandMap _cmdMap = null;      //holds the command instructions
 		//CHECK: Why this property is in both the persistentServer and persistentCommand
 
 		//to store the field names of the concurrency support data

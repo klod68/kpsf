@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("True Mentor")]
 [assembly: AssemblyProduct("Klod.Data.PersistenceService")]
-[assembly: AssemblyCopyright("Copyright © Claudio Rivera 2006-2014")]
+[assembly: AssemblyCopyright("Copyright © Claudio Rivera 2006-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
