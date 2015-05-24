@@ -24,7 +24,8 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 			{
 				for (byte i = 0; i < ParametersSet.GetLength(0); i++)
 				{
-					if (ParametersSet[i].Name == "@RETURN_VALUE")
+					if (ParametersSet[i].Direction == System.Data.ParameterDirection.ReturnValue
+						|| ParametersSet[i].Direction == System.Data.ParameterDirection.Output)
 					{
 						ParametersSet[i].Value = 0;
 						continue;

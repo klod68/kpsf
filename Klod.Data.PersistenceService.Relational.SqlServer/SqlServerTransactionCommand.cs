@@ -22,15 +22,14 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override void SetParametersValues()
 		{
 			try
-			{
-				string returnValue="@RETURN_VALUE"; 
-				
+			{					
 				//Get and set correct values from objects to all parameters
 				for (byte i = 0; i < ParametersSet.GetLength(0); i++)
 				{
 					string classToken = CommandMap.GetClassToken(i); //avoid multiple calls
 
-					if (ParametersSet[i].Name == returnValue)
+					if (ParametersSet[i].Direction == System.Data.ParameterDirection.ReturnValue 
+                        ||ParametersSet[i].Direction==System.Data.ParameterDirection.Output)
 					{
 						ParametersSet[i].Value = 0;
 						continue;

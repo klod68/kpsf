@@ -93,7 +93,10 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 			{
 				((SqlCommand)ProviderCommand).CommandText = CommandMap.Name;
 				if (CommandMap.Name.Contains("adhoc"))
+				{
 					((SqlCommand)ProviderCommand).CommandType = CommandType.Text;
+					return;
+				}
 				((SqlCommand)ProviderCommand).CommandType = CommandType.StoredProcedure; //WARNING: Hard coded to stored procs. Do ad hoc queries also, please!!
 
 			}
@@ -172,7 +175,7 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 				if (((SqlCommand)ProviderCommand).Connection.State == ConnectionState.Open)
 				{
 					((SqlCommand)ProviderCommand).ExecuteNonQuery();
-					if (((SqlCommand)ProviderCommand).Parameters.Contains("@RETURN_VALUE"))
+					if (((SqlCommand)ProviderCommand).Parameters.Contains("@RETURN_VALUE")) //WARNING: hard-coded return parameter. Change to data-driven, or settings variable.
 						return GetObjectIdenfierFromReturnValue(((SqlCommand)ProviderCommand).Parameters["@RETURN_VALUE"].Value);//return an ObjectIdentifier
 
 					return true;
