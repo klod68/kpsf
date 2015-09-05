@@ -31,7 +31,6 @@ namespace Klod.Data.PersistenceService.XML
 				_cmdXML = commandXML;
 				Name = _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandNameAttribute].Value;
 				Type = _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandTypeAttribute].Value;
-                ProviderType = _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandProviderTypeAttribute].Value;
 
 				//set the parameters 
 				_paramXML = _cmdXML.SelectSingleNode(PersistenceServiceConfiguration.Default.CommandParametersElement);
@@ -102,12 +101,33 @@ namespace Klod.Data.PersistenceService.XML
 
 		public override string GetIDDataType()
 		{
-			return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandIdDataTypeAttribute].Value;
+            try
+            {
+                return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandIdDataTypeAttribute].Value;
+            }
+            catch
+            {
+                return string.Empty;
+            }
 		}
-		public override string GetReturnTableName()
+
+        public override string GetProviderCommandType()
+        {
+            try
+            {
+                return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandProviderTypeAttribute].Value;
+            }
+            catch { return string.Empty; }
+
+        }
+        public override string GetReturnTableName()
 		{
-			return _cmdXML.SelectSingleNode(PersistenceServiceConfiguration.Default.CommandReturnTableElement).Attributes[PersistenceServiceConfiguration.Default.ReturnTableNameAttribute].Value;
-		}
+            try
+            {
+                return _cmdXML.SelectSingleNode(PersistenceServiceConfiguration.Default.CommandReturnTableElement).Attributes[PersistenceServiceConfiguration.Default.ReturnTableNameAttribute].Value;
+            }
+            catch { return string.Empty; }
+        }
 		public override string GetRetrieveColumn(int index)
 		{
 			try

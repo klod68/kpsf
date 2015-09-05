@@ -9,10 +9,6 @@ namespace Klod.Data.PersistenceService
 		private string _name = string.Empty;
 		private string _type = string.Empty;
 
-        //REFACTORING: Add a provider type attribute to pass types data to provider's implementations. CRR 20150904
-        private string _providerType;
-        //END REFACTORING
-
         private int _parametersCount;
 
 		private string[] _propertiesSet;
@@ -48,12 +44,6 @@ namespace Klod.Data.PersistenceService
 			set { _type = value; }
 			get { return _type; }
 		}
-
-        public string ProviderType
-        {
-            set { _providerType = value; }
-            get { return _providerType; }
-        }
 
         public int ParametersCount
 		{
@@ -139,6 +129,14 @@ namespace Klod.Data.PersistenceService
 		/// </summary>
 		/// <returns></returns>
 		public abstract string GetIDDataType();
+
+        /// <summary>
+        /// Get the provider's specific command type
+        /// </summary>
+        /// <returns></returns>
+        public abstract string GetProviderCommandType();
+
+
 		//The class name of the type that will be receive values
 		//from a multiple object retrive operation (transactions,...)
 		#endregion

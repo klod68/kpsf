@@ -93,9 +93,9 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 			{
 				((SqlCommand)ProviderCommand).CommandText = CommandMap.Name;
                
-                if (CommandMap.ProviderType!=string.Empty)
+                if (CommandMap.GetProviderCommandType()!=string.Empty)
 				{
-                    ((SqlCommand)ProviderCommand).CommandType = (CommandType)Enum.Parse(Type.GetType("CommandType"),CommandMap.ProviderType);
+                    ((SqlCommand)ProviderCommand).CommandType = (CommandType)Enum.Parse(typeof (CommandType),CommandMap.GetProviderCommandType());
 					return;
 				}
 				((SqlCommand)ProviderCommand).CommandType = CommandType.StoredProcedure; //WARNING: Hard coded to stored procs. Do ad hoc queries also, please!!
