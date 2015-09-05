@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 using System.Data.SqlClient;
 
 using Klod.Data.PersistenceService.Persistent;
@@ -46,7 +47,7 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 
 		#region MakeStoreCommand
 		/// <summary>
-		/// Factory method to return a store command for INSERTIONS of new data.
+		/// Factory method to return a store command for INSERTIONS of new data. Default type to stored procedure.
 		/// </summary>
 		/// <param name="connectionString"></param>
 		/// <param name="map"></param>
@@ -55,6 +56,7 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeStoreCommand(Map map, object appObj)
 		{
 			SqlCommand cmd = ((SqlConnection) ProviderConnection).CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
 			return new SqlServerCreateCommand(map, appObj, cmd);
 		}
 
@@ -68,7 +70,8 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeStoreCommand(Map map, IDictionary<string,object> appObjects)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerTransactionCommand(map, cmd, CRUD.Create, appObjects);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return new SqlServerTransactionCommand(map, cmd, CRUD.Create, appObjects);
 		}
 
 		/// <summary>
@@ -81,7 +84,8 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeStoreCommand(Map map, string cmdTypeIdentifier, IDictionary<string,object> appObjects)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerTransactionCommand(map, cmd, cmdTypeIdentifier, ConcurrencySupportType.None, false, appObjects);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return new SqlServerTransactionCommand(map, cmd, cmdTypeIdentifier, ConcurrencySupportType.None, false, appObjects);
 		}
 		
 		#endregion
@@ -90,12 +94,14 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeChangeCommand(Map map, IDictionary<string,object> appObjects)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerTransactionCommand(map, cmd, CRUD.Update, appObjects);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return new SqlServerTransactionCommand(map, cmd, CRUD.Update, appObjects);
 		}
 		protected override PersistenceCommand MakeChangeCommand(Map map, string cmdTypeIdentifier, IDictionary<string,object> appObjects)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerTransactionCommand(map, cmd, cmdTypeIdentifier, ConcurrencySupportType.None, false, appObjects);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return new SqlServerTransactionCommand(map, cmd, cmdTypeIdentifier, ConcurrencySupportType.None, false, appObjects);
 		}
 		/// <summary>
 		/// Factory method for update command and default command types.
@@ -111,10 +117,11 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 			PersistentObject persistentObject = new PersistentObject(appObject, oid);
 
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
 
-			//REVIEW: An opportunity to implement the state and factory method pattern delegating the creation 
-			//of the command to state classes that encapsulate the factory of the command based on the concurrency support state
-			if(ConcurrencySupport == ConcurrencySupportType.None)
+            //REVIEW: An opportunity to implement the state and factory method pattern delegating the creation 
+            //of the command to state classes that encapsulate the factory of the command based on the concurrency support state
+            if (ConcurrencySupport == ConcurrencySupportType.None)
 				_pcmd = new SqlServerUpdateCommand(map, persistentObject, cmd);
 			else if(ConcurrencySupport == ConcurrencySupportType.Optimistic)
 				_pcmd = new SqlServerUpdateCommand(map, persistentObject, cmd, CRUD.UpdateCheckTimestamp);
@@ -137,8 +144,8 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		{
 			SqlServerPersistenceCommand pcmd = null;
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-
-			pcmd = new SqlServerRetrieveCommand(map, type, cmd);
+            cmd.CommandType = CommandType.StoredProcedure;
+            pcmd = new SqlServerRetrieveCommand(map, type, cmd);
 			return pcmd;
 		}
 		/// <summary>
@@ -153,8 +160,8 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		{
 			SqlServerPersistenceCommand pcmd = null;
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-
-			pcmd = new SqlServerRetrieveCommand(map, cmdType, cmd, type, ConcurrencySupport, returnCollection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            pcmd = new SqlServerRetrieveCommand(map, cmdType, cmd, type, ConcurrencySupport, returnCollection);
 			return pcmd;
 
 		}
@@ -171,8 +178,9 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		{
 			SqlServerPersistenceCommand pcmd = null;
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
 
-			if (ConcurrencySupport == ConcurrencySupportType.None)
+            if (ConcurrencySupport == ConcurrencySupportType.None)
 				pcmd = new SqlServerRetrieveCommand(map, oid, cmd, type);
 			else if (ConcurrencySupport == ConcurrencySupportType.Optimistic)
 				pcmd = new SqlServerRetrieveCommand(map, oid, cmd, type, CRUD.RetrieveWithTimestamp);
@@ -192,7 +200,9 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeRetrieveCommand(Map map, ObjectIdentifier oid, Type type, string cmdType)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerRetrieveCommand(map, oid, cmd, type, cmdType, ConcurrencySupport);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            return new SqlServerRetrieveCommand(map, oid, cmd, type, cmdType, ConcurrencySupport);
 		}
 		/// <summary>
 		/// Factory method to support custom criteria and command.
@@ -206,22 +216,10 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeRetrieveCommand(Map map, object criteria, Type type, string cmdType, bool returnCollection)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerRetrieveCommand(map, cmdType, cmd, type, ConcurrencySupport, criteria, returnCollection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            return new SqlServerRetrieveCommand(map, cmdType, cmd, type, ConcurrencySupport, criteria, returnCollection);
 		}
-		/// <summary>
-		/// Factory method to support custom command and a set of criterias.
-		/// </summary>
-		/// <param name="connectionString"></param>
-		/// <param name="map"></param>
-		/// <param name="type"></param>
-		/// <param name="command"></param>
-		/// <param name="criterias"></param>
-		/// <returns></returns>
-		//protected override PersistenceCommand MakeRetrieveCommand(Map map, Type type, string cmdType, params object[] criterias)
-		//{
-		//     SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-		//     return new SqlServerRetrieveCommand(map, cmd, type, cmdType,ConcurrencySupport, criterias);
-		//}
 
 		/// <summary>
 		/// Factory method to support custom command and a set of criterias.
@@ -235,7 +233,8 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeRetrieveCommand(Map map, Type type, string cmdType, bool returnPersistent, IList<object> criterias)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerRetrieveCommand(map, cmdType, cmd, type, ConcurrencySupport, returnPersistent, criterias);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return new SqlServerRetrieveCommand(map, cmdType, cmd, type, ConcurrencySupport, returnPersistent, criterias);
 		}
 
 		#endregion
@@ -247,9 +246,10 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		{
 			SqlServerPersistenceCommand _pcmd = null;
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
 
-			//Verify concurrency and pass proper crud operation
-			if (ConcurrencySupport == ConcurrencySupportType.None)
+            //Verify concurrency and pass proper crud operation
+            if (ConcurrencySupport == ConcurrencySupportType.None)
 				_pcmd = new SqlServerDeleteCommand(map, oid, cmd);
 			else if (ConcurrencySupport == ConcurrencySupportType.Optimistic)
 				_pcmd = new SqlServerDeleteCommand(map, oid, cmd, CRUD.DeleteCheckTimestamp);
@@ -261,7 +261,9 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 		protected override PersistenceCommand MakeDeleteCommand(Map map, ObjectIdentifier oid, string cmdType)
 		{
 			SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-			return new SqlServerDeleteCommand(map, oid, cmd, cmdType, ConcurrencySupport);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            return new SqlServerDeleteCommand(map, oid, cmd, cmdType, ConcurrencySupport);
 		}
 
 		#endregion
