@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DALBuilder" GeneratedClassName="app">
+  <Profiles />
+  <Settings>
+    <Setting Name="Optimistic" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PessimisticUserId" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PessimisticUserName" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Server" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Database" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IntegratedSecurity" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ScriptFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">z:\me\Desktop\scripts</Value>
+    </Setting>
+    <Setting Name="MappingFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Z:\me\Desktop\scripts</Value>
+    </Setting>
+    <Setting Name="UserId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DALFactoryClass" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DALBuilder.DomainLayer.SqlServer.SqlServerDALFactory,DALBuilder.DomainLayer.SqlServer</Value>
+    </Setting>
+    <Setting Name="DALFactoryClassLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">z:\me\Documents\Projects\PersistenceServiceFramework.v4\DALBuilder.DomainLayer.SqlServer\bin\Release\DALBuilder.DomainLayer.SqlServer.dll</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

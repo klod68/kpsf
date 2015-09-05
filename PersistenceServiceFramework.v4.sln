@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{BEA02885-629F-4A6C-8A49-E6AE06FE98EE}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,6 +14,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klod.Data.PersistenceService.Test", "Klod.Data.PersistenceService.Test\Klod.Data.PersistenceService.Test.csproj", "{FA803E86-898F-4B20-B5A5-854A21FF32D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klod.Data.PersistenceService.Relational.SqlServer", "Klod.Data.PersistenceService.Relational.SqlServer\Klod.Data.PersistenceService.Relational.SqlServer.csproj", "{B79E8897-D7A0-4F11-BD3E-775F13A574B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALBuilder", "DALBuilder\DALBuilder.csproj", "{6276F0C2-9948-4306-A31F-8B8C54564184}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALBuilder.DomainLayer", "DALBuilder.DomainLayer\DALBuilder.DomainLayer.csproj", "{D65D5B7B-DE04-4DC3-800A-FBE4B41882A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALBuilder.DomainLayer.SqlServer", "DALBuilder.DomainLayer.SqlServer\DALBuilder.DomainLayer.SqlServer.csproj", "{9E5B8BF0-663C-49C0-B018-AFA46B81DA3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{B79E8897-D7A0-4F11-BD3E-775F13A574B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B79E8897-D7A0-4F11-BD3E-775F13A574B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B79E8897-D7A0-4F11-BD3E-775F13A574B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6276F0C2-9948-4306-A31F-8B8C54564184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6276F0C2-9948-4306-A31F-8B8C54564184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6276F0C2-9948-4306-A31F-8B8C54564184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6276F0C2-9948-4306-A31F-8B8C54564184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D65D5B7B-DE04-4DC3-800A-FBE4B41882A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D65D5B7B-DE04-4DC3-800A-FBE4B41882A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D65D5B7B-DE04-4DC3-800A-FBE4B41882A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D65D5B7B-DE04-4DC3-800A-FBE4B41882A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E5B8BF0-663C-49C0-B018-AFA46B81DA3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E5B8BF0-663C-49C0-B018-AFA46B81DA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E5B8BF0-663C-49C0-B018-AFA46B81DA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E5B8BF0-663C-49C0-B018-AFA46B81DA3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DALBuilder.DomainLayer.SqlServer" GeneratedClassName="AppSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="connection" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DALBuilder.DomainLayer.SqlServer.SqlServerConnection</Value>
+    </Setting>
+    <Setting Name="database" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DALBuilder.DomainLayer.SqlServer.SqlServerDatabase</Value>
+    </Setting>
+    <Setting Name="PessimisticConcurrencySupportColum" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">InUse</Value>
+    </Setting>
+    <Setting Name="OptimisticConcurrencySupportColumn" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Version</Value>
+    </Setting>
+    <Setting Name="server" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DALBuilder.DomainLayer.SqlServer.SqlServer</Value>
+    </Setting>
+    <Setting Name="network" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DALBuilder.DomainLayer.SqlServer.SqlServerNetwork</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
