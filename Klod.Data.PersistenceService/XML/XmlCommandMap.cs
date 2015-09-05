@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,6 +31,7 @@ namespace Klod.Data.PersistenceService.XML
 				_cmdXML = commandXML;
 				Name = _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandNameAttribute].Value;
 				Type = _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandTypeAttribute].Value;
+                ProviderType = _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandProviderTypeAttribute].Value;
 
 				//set the parameters 
 				_paramXML = _cmdXML.SelectSingleNode(PersistenceServiceConfiguration.Default.CommandParametersElement);

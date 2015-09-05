@@ -116,5 +116,8 @@
     <Setting Name="PersistenceServiceAssemblyLocation" Type="System.String" Scope="Application">
       <Value Profile="(Default)">z:\me\Documents\Projects\PersistenceServiceFramework.v4\Klod.Data.PersistenceService.Relational.SqlServer\bin\Release\Klod.Data.PersistenceService.Relational.SqlServer.dll</Value>
     </Setting>
+    <Setting Name="CommandProviderTypeAttribute" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">providerType</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

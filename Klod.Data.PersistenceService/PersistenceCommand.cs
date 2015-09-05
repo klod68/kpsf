@@ -25,9 +25,11 @@ namespace Klod.Data.PersistenceService
 		private string _optimisticField = string.Empty;
 		private string _pessimisticField = string.Empty;
 
+
 		private IPersistable _pObj = null;
 		private object _objectForProcess = null;
 		private object _providerCommand = null;
+
 		//REFACTORING: use a string token to unique identify same objects
 		//2012.05.18 crr
 		private IDictionary<string, object> _appObjs;

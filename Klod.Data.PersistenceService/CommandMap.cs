@@ -1,26 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Klod.Data.PersistenceService
 {
-	/// <summary>
-	///Base class to represent the set of instructions and details for a command object.
-	/// </summary>
-	public abstract class CommandMap
+    /// <summary>
+    ///Base class to represent the set of instructions and details for a command object.
+    /// </summary>
+    public abstract class CommandMap
 	{
 		#region attributes (private variables)
 		private string _name = string.Empty;
 		private string _type = string.Empty;
-		private int _parametersCount;
+
+        //REFACTORING: Add a provider type attribute to pass types data to provider's implementations. CRR 20150904
+        private string _providerType;
+        //END REFACTORING
+
+        private int _parametersCount;
 
 		private string[] _propertiesSet;
 		private string[] _parametersSet;
 
 		private string[] _classNamesSet;//to store objects info, when available, for transaction commands
-		//crr 2012.05.15
+		
+        //crr 2012.05.15
 		//REFACTORING: Classes can be used more than once in the same map. Use the token property for a unique identifier for them.
 		private string[] _classTokensSet; //to store a unique name when two or more class of the same type are used in the map
+
 
 		private string[] _parametersDataTypesSet;
 		private string[] _parametersDirectionsSet;
@@ -45,7 +48,14 @@ namespace Klod.Data.PersistenceService
 			set { _type = value; }
 			get { return _type; }
 		}
-		public int ParametersCount
+
+        public string ProviderType
+        {
+            set { _providerType = value; }
+            get { return _providerType; }
+        }
+
+        public int ParametersCount
 		{
 			set { _parametersCount = value; }
 			get { return _parametersCount; }

@@ -92,9 +92,10 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 			try
 			{
 				((SqlCommand)ProviderCommand).CommandText = CommandMap.Name;
-				if (CommandMap.Name.Contains("adhoc"))
+               
+                if (CommandMap.ProviderType!=string.Empty)
 				{
-					((SqlCommand)ProviderCommand).CommandType = CommandType.Text;
+                    ((SqlCommand)ProviderCommand).CommandType = (CommandType)Enum.Parse(Type.GetType("CommandType"),CommandMap.ProviderType);
 					return;
 				}
 				((SqlCommand)ProviderCommand).CommandType = CommandType.StoredProcedure; //WARNING: Hard coded to stored procs. Do ad hoc queries also, please!!
