@@ -190,10 +190,6 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 					goto Retry;
 				}
 			}
-			catch (SqlException ex)
-			{
-				throw ex;
-			}
 			catch (Exception ex)
 			{
 				throw ex;

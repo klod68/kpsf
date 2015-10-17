@@ -137,10 +137,6 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 
 				return _dvw;
 			}
-			catch (SqlException ex)
-			{
-				throw ex;
-			}
 			catch (Exception ex)
 			{
 				throw ex;

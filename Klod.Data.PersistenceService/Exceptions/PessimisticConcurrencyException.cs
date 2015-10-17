@@ -5,6 +5,7 @@ using Klod.Data.PersistenceService.Settings;
 
 namespace Klod.Data.PersistenceService.Exceptions
 {
+    [Serializable]
 	public class PessimisticConcurrencyException : Exception
 	{
 		private string _message = PersistenceServiceConfiguration.Default.PessimisticConcurrencyErrorMessage;

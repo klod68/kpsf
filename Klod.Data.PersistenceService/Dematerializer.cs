@@ -6,6 +6,7 @@ using System.Xml;
 using Klod.Data.PersistenceService.Settings;
 namespace Klod.Data.PersistenceService
 {
+    //CHECK: Assumes maps in xml. Change implementation to other map sources types. crr 20150917
 	/// <summary>
 	/// Class with the interface for a dematerialization process.
 	/// Specific dematerialization must be implemented by subtypes.

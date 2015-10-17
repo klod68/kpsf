@@ -30,7 +30,7 @@ namespace Klod.Data.PersistenceService
 		private object _objectForProcess = null;
 		private object _providerCommand = null;
 
-		//REFACTORING: use a string token to unique identify same objects
+		//REFACTORING: use a string token to unique identify same types
 		//2012.05.18 crr
 		private IDictionary<string, object> _appObjs;
 
