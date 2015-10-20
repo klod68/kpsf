@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Klod.Data.PersistenceService.Identifiers
 {
-	/// <summary>
-	/// DataType class for object identification. Object identifier pattern for a relational world.
-	/// </summary>
-	public class OID : ObjectIdentifier
+    /// <summary>
+    /// DataType class for object identification. Object identifier pattern for a relational world.
+    /// </summary>
+    public class OID : ObjectIdentifier
 	{
 		#region variables
 

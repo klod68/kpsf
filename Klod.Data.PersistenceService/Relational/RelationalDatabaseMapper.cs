@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data;
 
 namespace Klod.Data.PersistenceService.Relational
 {
-	public abstract class RelationalDatabaseMapper : PersistenceMapper
+    public abstract class RelationalDatabaseMapper : PersistenceMapper
 	{
 		private string _tableName;
 

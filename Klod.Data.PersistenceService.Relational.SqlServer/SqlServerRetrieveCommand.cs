@@ -118,9 +118,11 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 				}
 			}
 		}
-		//Return a DataView for multiple records(as a cursor object) 
-		//or return a persistentObject (as a record)
-		protected override Object ExecuteCommand()
+        /// <summary>
+        ///Return a DataView for multiple records(as a cursor object) or return a persistentObject (as a record)
+        /// </summary>
+        /// <returns></returns>
+        protected override Object ExecuteCommand()
 		{
 			try
 			{

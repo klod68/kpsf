@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Klod.Data.PersistenceService
 {
-	/// <summary>
-	/// Composite class to store multiple PersistenCommands in a transaction.
-	/// </summary>
-	public abstract class CompositeCommand : PersistenceCommand
+    /// <summary>
+    /// Composite class to store multiple PersistenCommands in a transaction.
+    /// </summary>
+    public abstract class CompositeCommand : PersistenceCommand
 	{
 		private Dictionary<int, PersistenceCommand> _cmds;
 

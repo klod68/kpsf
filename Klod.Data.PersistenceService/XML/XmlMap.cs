@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.Xml;
 using Klod.Data.PersistenceService.Settings;
 
 namespace Klod.Data.PersistenceService.XML
 {
-	/// <summary>
-	/// A set of instructions to map object properties to parameters or elements
-	/// of the persistent object.
-	/// </summary>
-	public class XmlMap : Map
+    /// <summary>
+    /// A set of instructions to map object properties to parameters or elements
+    /// of the persistent object.
+    /// </summary>
+    public class XmlMap : Map
 	{
 		protected XmlNode _text; //content
 		protected string _className;

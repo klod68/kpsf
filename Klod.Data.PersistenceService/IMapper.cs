@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Klod.Data.PersistenceService
 {
-	public interface IMapper
+    public interface IMapper
 	{
 		IPersistable Get(ObjectIdentifier oid);//retrieve an object
 		ObjectIdentifier Put(Object appObject);//store new objects

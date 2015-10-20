@@ -1,14 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Klod.Data.PersistenceService.Persistent
 {
-	//TODO: complete conversion methods
-	/// <summary>
-	/// Represents a literal value for o/r mapping purpose.
-	/// </summary>
-	public class Literal : IConvertible
+    //TODO: complete conversion methods
+    /// <summary>
+    /// Represents a literal value for o/r mapping purpose.
+    /// </summary>
+    public class Literal : IConvertible
 	{
 		private object _value;
 

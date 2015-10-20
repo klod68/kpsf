@@ -1,14 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data;
 
 namespace Klod.Data.PersistenceService.Relational
 {
-	/// <summary>
-	/// DataType class that represents a parameter in a stored procedure
-	/// </summary>
-	public class Parameter
+    /// <summary>
+    /// DataType class that represents a parameter in a stored procedure
+    /// </summary>
+    public class Parameter
 	{
 		#region variables
 		private string _name;

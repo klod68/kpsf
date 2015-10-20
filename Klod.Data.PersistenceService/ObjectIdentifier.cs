@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Klod.Data.PersistenceService
 {
-	/// <summary>
-	/// Base class for an ObjectIdentifier.
-	/// </summary>
-	public abstract class ObjectIdentifier
+    /// <summary>
+    /// Base class for an ObjectIdentifier.
+    /// </summary>
+    public abstract class ObjectIdentifier
 	{
 		private IDDataType _dataType;
 		private IDType _type;

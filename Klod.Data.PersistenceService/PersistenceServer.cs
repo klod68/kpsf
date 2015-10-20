@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
-using System.Reflection;
 using System.Configuration;
 
 using Klod.Data.PersistenceService.Settings;
@@ -10,16 +8,16 @@ using Klod.Data.PersistenceService.Resources;
 
 namespace Klod.Data.PersistenceService
 {
-	//REFACTORING: Can this class be defined as a Monostate? (See Martin...)
-	//2012.05.28 crr: Change all protected attributes to private. Add getters and setters.
-	//Template methods (Store, Change, Retrieve and Destroy): define the skeleton of an algorithm,
-	//deferring some steps to subclasses.
-	//Factory method (SetServer): defer implementation of the creation of objects to subtypes.
-	//Facade: this class is the entry point of the whole persistence sub-system.
-	/// <summary>
-	/// This abstract class implements multiple GRASP principles and design patterns
-	/// </summary>
-	public abstract class PersistenceServer
+    //REFACTORING: Can this class be defined as a Monostate? (See Martin...)
+    //2012.05.28 crr: Change all protected attributes to private. Add getters and setters.
+    //Template methods (Store, Change, Retrieve and Destroy): define the skeleton of an algorithm,
+    //deferring some steps to subclasses.
+    //Factory method (SetServer): defer implementation of the creation of objects to subtypes.
+    //Facade: this class is the entry point of the whole persistence sub-system.
+    /// <summary>
+    /// This abstract class implements multiple GRASP principles and design patterns
+    /// </summary>
+    public abstract class PersistenceServer
 	{
 		#region constants variables
 		const string CANNOT_STORE_NEW = "Cannot store the new object.";
@@ -337,16 +335,17 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_STORE_NEW, ex);
 			}
 		}
-		#endregion
+        #endregion
 
-		#region Retrieve
-		//ok crr 2009.10.31
-		/// <summary>
-		/// Retrieve all. Return a DataView. Receive the class type as parameter
-		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
-		public DataView Retrieve(Type mapType)
+        #region Retrieve
+        //ok crr 2015.10.19 REVIEW:Replace return value? From concrete class to an abstract or interface
+        //ok crr 2009.10.31
+        /// <summary>
+        /// Retrieve all. Return a IList type. Receive the class type as parameter
+        /// </summary>
+        /// <param name="mapType"></param>
+        /// <returns></returns>
+        public DataView Retrieve(Type mapType)
 		{
 			try
 			{
@@ -364,15 +363,15 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_RETRIEVE, ex);
 			}
 		}
-		//ok crr 2009.10.31
-		/// <summary>
-		/// Return an persistent object or a list of records using a custom command identifier.
-		/// </summary>
-		/// <param name="mapType"></param>
-		/// <param name="cmdType"></param>
-		/// <param name="returnCollection"></param>
-		/// <returns></returns>
-		public object Retrieve(Type mapType, string cmdIdentifier, bool returnCollection)
+        //ok crr 2009.10.31
+        /// <summary>
+        /// Return an persistent object or a list of records using a custom command identifier.
+        /// </summary>
+        /// <param name="mapType"></param>
+        /// <param name="cmdIdentifier"></param>
+        /// <param name="returnCollection"></param>
+        /// <returns></returns>
+        public object Retrieve(Type mapType, string cmdIdentifier, bool returnCollection)
 		{
 			try
 			{

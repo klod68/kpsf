@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Klod.Data.PersistenceService
 {
-	/// <summary>
-	/// Interface to support persistable objects requiring an OID property.
-	/// </summary>
-	public interface IPersistable
+    /// <summary>
+    /// Interface to support persistable objects requiring an OID property.
+    /// </summary>
+    public interface IPersistable
 	{
 		ObjectIdentifier OID { set;get;}
 		object Version { set;get;}

@@ -1,17 +1,14 @@
-
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 
 using Klod.Data.PersistenceService.Settings;
 
 namespace Klod.Data.PersistenceService.XML
 {
-	/// <summary>
-	/// Representation of a command element in a map.
-	/// </summary>
-	public class XmlCommandMap : CommandMap
+    /// <summary>
+    /// Representation of a command element in a map.
+    /// </summary>
+    public class XmlCommandMap : CommandMap
 	{
 		#region variables
 		protected XmlNode _cmdXML;

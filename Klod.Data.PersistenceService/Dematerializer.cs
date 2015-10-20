@@ -1,18 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using System.Xml;
 using Klod.Data.PersistenceService.Settings;
 namespace Klod.Data.PersistenceService
 {
     //CHECK: Assumes maps in xml. Change implementation to other map sources types. crr 20150917
-	/// <summary>
-	/// Class with the interface for a dematerialization process.
-	/// Specific dematerialization must be implemented by subtypes.
-	/// Behavior: Loads the maps of every objects in the mapping.xml map file
-	/// </summary>
-	public abstract class Dematerializer
+    /// <summary>
+    /// Class with the interface for a dematerialization process.
+    /// Specific dematerialization must be implemented by subtypes.
+    /// Behavior: Loads the maps of every objects in the mapping.xml map file
+    /// </summary>
+    public abstract class Dematerializer
 	{
 		private Dictionary<string, Map> _mapPool; //store the maps in a dictionary for caching
 		protected const string ERR_LOADING_XML = "Error loading the mapping file.";

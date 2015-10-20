@@ -1,22 +1,19 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Klod.Data.PersistenceService.Settings;
-using Klod.Data.PersistenceService.Persistent;
 namespace Klod.Data.PersistenceService
 {
-	//REFACTORING: Change object collection variable for processing with a IDictionary to include an unique ID. This is the better
-	//solution to use same objects in the same command.
-	//2012.05.18 crr 
-	/// <summary>
-	/// Abstract class that represent a CRUD command.
-	/// PersistentCommand: a representation of a command operation to manage persistent objects
-	/// in a storage(Database, XML document,...). Implementation of the command pattern.
-	/// Command Pattern: Encapsute a request as an object, letting 
-	/// parameterize clients, with different requests, queue (for transactions, by ex.)
-	/// or log requests.
-	/// </summary>
-	public abstract class PersistenceCommand
+    //REFACTORING: Change object collection variable for processing with a IDictionary to include an unique ID. This is the better
+    //solution to use same objects in the same command.
+    //2012.05.18 crr 
+    /// <summary>
+    /// Abstract class that represent a CRUD command.
+    /// PersistentCommand: a representation of a command operation to manage persistent objects
+    /// in a storage(Database, XML document,...). Implementation of the command pattern.
+    /// Command Pattern: Encapsute a request as an object, letting 
+    /// parameterize clients, with different requests, queue (for transactions, by ex.)
+    /// or log requests.
+    /// </summary>
+    public abstract class PersistenceCommand
 	{
 		private CommandMap _cmdMap = null;      //holds the command instructions
 		//CHECK: Why this property is in both the persistentServer and persistentCommand

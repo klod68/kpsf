@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Klod.Data.PersistenceService.Identifiers;
 
 namespace Klod.Data.PersistenceService.Persistent
 {
-	//CHECK: Why it doesn't have behavior?
-	/// <summary>
-	/// Wrap class for add persistence capabilities to common domain objects
-	/// </summary>
-	public class PersistentObject : IPersistable
+    //CHECK: Why it doesn't have behavior?
+    /// <summary>
+    /// Wrap class for add persistence capabilities to common domain objects
+    /// </summary>
+    public class PersistentObject : IPersistable
 	{
 		private ObjectIdentifier _oid;
 		private object _me;

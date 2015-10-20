@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Klod.Data.PersistenceService.Settings;
 
 namespace Klod.Data.PersistenceService.Exceptions

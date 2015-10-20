@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Klod.Data.PersistenceService
 {
-	public interface IObjectCache
+    public interface IObjectCache
 	{
 		void Add(ObjectIdentifier oid, object appObject);
 		object Get(ObjectIdentifier oid);

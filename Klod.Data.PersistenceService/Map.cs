@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Klod.Data.PersistenceService
 {
-	/// <summary>
-	/// Abstract class that represent the mapping document with a set of command maps or instruction to materialize/dematerialize objects.
-	/// </summary>
-	public abstract class Map
+    /// <summary>
+    /// Abstract class that represent the mapping document with a set of command maps or instruction to materialize/dematerialize objects.
+    /// </summary>
+    public abstract class Map
 	{
 		//change return types to enumerations, interfaces and abstract class
 		public abstract CommandMap GetCommandMap(string cmdType);

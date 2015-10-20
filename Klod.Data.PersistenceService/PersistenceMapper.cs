@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Klod.Data.PersistenceService
 {
-	public abstract class PersistenceMapper : IMapper
+    public abstract class PersistenceMapper : IMapper
 	{
 		private Dictionary<ObjectIdentifier, IPersistable> _cachedObjects;
 
