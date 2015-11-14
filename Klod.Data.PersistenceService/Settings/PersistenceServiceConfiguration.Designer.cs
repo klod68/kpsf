@@ -360,8 +360,8 @@ namespace Klod.Data.PersistenceService.Settings {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("z:\\me\\Documents\\Projects\\PersistenceServiceFramework.v4\\Klod.Data.PersistenceServ" +
-            "ice.Relational.SqlServer\\bin\\Release\\Klod.Data.PersistenceService.Relational.Sql" +
-            "Server.dll")]
+            "ice.Relational.SqlServer\\bin\\Debug\\Klod.Data.PersistenceService.Relational.SqlSe" +
+            "rver.dll")]
         public string PersistenceServiceAssemblyLocation {
             get {
                 return ((string)(this["PersistenceServiceAssemblyLocation"]));

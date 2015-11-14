@@ -8,6 +8,7 @@ using Klod.Data.PersistenceService.Resources;
 
 namespace Klod.Data.PersistenceService
 {
+    //TODO: Write pre-condition, and post-condition clauses in all main methods.
     //REFACTORING: Can this class be defined as a Monostate? (See Martin...)
     //2012.05.28 crr: Change all protected attributes to private. Add getters and setters.
     //Template methods (Store, Change, Retrieve and Destroy): define the skeleton of an algorithm,
@@ -454,6 +455,8 @@ namespace Klod.Data.PersistenceService
 		/// <returns></returns>
 		public object Retrieve(object criteria, Type mapType, string cmdIdentifier, bool returnCollection)
 		{
+
+
 			try
 			{
 				GetMap(mapType);
