@@ -4,6 +4,7 @@ using Klod.Data.PersistenceService.Settings;
 
 namespace Klod.Data.PersistenceService
 {
+    //TODO: Use cache to store and reuse PersistenceServer instances?
 	/// <summary>
 	/// Let's the interface/abstract project do the factory of implementations. The abstract set of classes should be in an isolated
 	/// assembly. Implementations use another assembly to support late binding.

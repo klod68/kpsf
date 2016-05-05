@@ -88,7 +88,7 @@ namespace DALBuilder.UI
             this.grWelcome.Controls.Add(this.lblFirstMessage);
             this.grWelcome.Location = new System.Drawing.Point(26, 36);
             this.grWelcome.Name = "grWelcome";
-            this.grWelcome.Size = new System.Drawing.Size(191, 152);
+            this.grWelcome.Size = new System.Drawing.Size(277, 152);
             this.grWelcome.TabIndex = 1;
             this.grWelcome.TabStop = false;
             // 
@@ -116,7 +116,7 @@ namespace DALBuilder.UI
             this.grConnect.Controls.Add(this.label1);
             this.grConnect.Location = new System.Drawing.Point(176, 36);
             this.grConnect.Name = "grConnect";
-            this.grConnect.Size = new System.Drawing.Size(132, 139);
+            this.grConnect.Size = new System.Drawing.Size(218, 139);
             this.grConnect.TabIndex = 1;
             this.grConnect.TabStop = false;
             this.grConnect.Visible = false;
@@ -236,7 +236,7 @@ namespace DALBuilder.UI
             // btnHelp
             // 
             this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnHelp.Location = new System.Drawing.Point(4, 372);
+            this.btnHelp.Location = new System.Drawing.Point(47, 372);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(73, 23);
             this.btnHelp.TabIndex = 2;
@@ -248,7 +248,7 @@ namespace DALBuilder.UI
             // 
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBack.Enabled = false;
-            this.btnBack.Location = new System.Drawing.Point(176, 371);
+            this.btnBack.Location = new System.Drawing.Point(219, 371);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(73, 23);
             this.btnBack.TabIndex = 3;
@@ -259,7 +259,7 @@ namespace DALBuilder.UI
             // btnNext
             // 
             this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnNext.Location = new System.Drawing.Point(255, 371);
+            this.btnNext.Location = new System.Drawing.Point(298, 371);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(73, 23);
             this.btnNext.TabIndex = 4;
@@ -271,7 +271,7 @@ namespace DALBuilder.UI
             // 
             this.btnFinish.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnFinish.Enabled = false;
-            this.btnFinish.Location = new System.Drawing.Point(334, 371);
+            this.btnFinish.Location = new System.Drawing.Point(377, 371);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(73, 23);
             this.btnFinish.TabIndex = 5;
@@ -282,7 +282,7 @@ namespace DALBuilder.UI
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancel.Location = new System.Drawing.Point(413, 371);
+            this.btnCancel.Location = new System.Drawing.Point(456, 371);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(73, 23);
             this.btnCancel.TabIndex = 6;
@@ -314,7 +314,7 @@ namespace DALBuilder.UI
             this.grSelectTables.Controls.Add(this.lstTables);
             this.grSelectTables.Location = new System.Drawing.Point(358, 46);
             this.grSelectTables.Name = "grSelectTables";
-            this.grSelectTables.Size = new System.Drawing.Size(159, 126);
+            this.grSelectTables.Size = new System.Drawing.Size(245, 126);
             this.grSelectTables.TabIndex = 1;
             this.grSelectTables.TabStop = false;
             this.grSelectTables.Visible = false;
@@ -460,7 +460,7 @@ namespace DALBuilder.UI
             this.grSaveDASDirectory.Controls.Add(this.tbDASDirectory);
             this.grSaveDASDirectory.Location = new System.Drawing.Point(20, 194);
             this.grSaveDASDirectory.Name = "grSaveDASDirectory";
-            this.grSaveDASDirectory.Size = new System.Drawing.Size(163, 145);
+            this.grSaveDASDirectory.Size = new System.Drawing.Size(249, 145);
             this.grSaveDASDirectory.TabIndex = 1;
             this.grSaveDASDirectory.TabStop = false;
             this.grSaveDASDirectory.Visible = false;
@@ -503,7 +503,7 @@ namespace DALBuilder.UI
             this.grFinish.Controls.Add(this.lblFinish);
             this.grFinish.Location = new System.Drawing.Point(370, 245);
             this.grFinish.Name = "grFinish";
-            this.grFinish.Size = new System.Drawing.Size(123, 111);
+            this.grFinish.Size = new System.Drawing.Size(209, 111);
             this.grFinish.TabIndex = 9;
             this.grFinish.TabStop = false;
             this.grFinish.Visible = false;
@@ -521,7 +521,7 @@ namespace DALBuilder.UI
             // 
             // DALBuilderWizard
             // 
-            this.ClientSize = new System.Drawing.Size(523, 410);
+            this.ClientSize = new System.Drawing.Size(609, 410);
             this.Controls.Add(this.grSelectTables);
             this.Controls.Add(this.grSaveDASDirectory);
             this.Controls.Add(this.grFinish);
