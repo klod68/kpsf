@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Klod.Data.PersistenceService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("True Mentor")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Klod.Data.PersistenceService")]
-[assembly: AssemblyCopyright("Copyright © Claudio Rivera 2006-2015")]
+[assembly: AssemblyCopyright("Copyright © Claudio Rivera 2006-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

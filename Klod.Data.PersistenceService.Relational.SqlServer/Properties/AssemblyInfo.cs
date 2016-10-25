@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Klod.Data.PersistenceService.Relational.SqlServer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("True Mentor")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Klod.Data.PersistenceService.Relational.SqlServer")]
-[assembly: AssemblyCopyright("Copyright © Claudio Rivera 2006-2014")]
+[assembly: AssemblyCopyright("Copyright © Claudio Rivera 2006-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("3.5.0.0")]
-[assembly: AssemblyFileVersion("3.5.0.0")]
+[assembly: AssemblyVersion("3.5.5.0")]
+[assembly: AssemblyFileVersion("3.5.5.0")]
