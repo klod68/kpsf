@@ -17,7 +17,7 @@ namespace Klod.Data.PersistenceService
 		private string[] _classNamesSet;//to store objects info, when available, for transaction commands
 		
         //crr 2012.05.15
-		//REFACTORING: Classes can be used more than once in the same map. Use the token property for a unique identifier for them.
+		//REFACTORING: Classes can be used more than once in the same map. Use the token property as an unique identifier for them.
 		private string[] _classTokensSet; //to store a unique name when two or more class of the same type are used in the map
 
 
