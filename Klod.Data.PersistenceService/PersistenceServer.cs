@@ -8,17 +8,17 @@ using Klod.Data.PersistenceService.Resources;
 
 namespace Klod.Data.PersistenceService
 {
-    //TODO: Write pre-condition, and post-condition clauses in all main methods.
-    //REFACTORING: Can this class be defined as a Monostate? (See Martin...)
-    //2012.05.28 crr: Change all protected attributes to private. Add getters and setters.
-    //Template methods (Store, Change, Retrieve and Destroy): define the skeleton of an algorithm,
-    //deferring some steps to subclasses.
-    //Factory method (SetServer): defer implementation of the creation of objects to subtypes.
-    //Facade: this class is the entry point of the whole persistence sub-system.
-    /// <summary>
-    /// This abstract class implements multiple GRASP principles and design patterns
-    /// </summary>
-    public abstract class PersistenceServer
+	//TODO: Write pre-condition, and post-condition clauses in all main methods.
+	//REFACTORING: Can this class be defined as a Monostate? (See Martin...)
+	//2012.05.28 crr: Change all protected attributes to private. Add getters and setters.
+	//Template methods (Store, Change, Retrieve and Destroy): define the skeleton of an algorithm,
+	//deferring some steps to subclasses.
+	//Factory method (SetServer): defer implementation of the creation of objects to subtypes.
+	//Facade: this class is the entry point of the whole persistence sub-system.
+	/// <summary>
+	/// This abstract class implements multiple GRASP principles and design patterns
+	/// </summary>
+	public abstract class PersistenceServer
 	{
 		#region constants variables
 		const string CANNOT_STORE_NEW = "Cannot store the new object.";
@@ -275,6 +275,32 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_STORE_NEW, ex);
 			}
 		}
+        /// <summary>
+        /// Accept a storable objects collection for store.
+        /// </summary>
+        /// <param name="appObjs"></param>
+        /// <returns></returns>
+        public ObjectIdentifier Store(IStorableObjects appObjs)
+        {
+            try
+            {
+                //set the _map
+                GetMap(appObjs.MapType);
+
+                //make the specific command to execute an Insert
+                _cmd = MakeStoreCommand(_map, appObjs.Bundle);//2 MakeStoreCommand
+                if (_cmd == null)
+                    throw new Exception(NO_CMD_MAP);
+                    
+                return (ObjectIdentifier)_cmd.Run();
+            }
+            catch(Exception ex)      
+            {
+                throw new Exception(CANNOT_STORE_NEW, ex);
+            }
+
+
+        }
 		//ok crr 2009.10.31
 		/// <summary>
 		/// Store values from different application objects,
@@ -335,17 +361,17 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_STORE_NEW, ex);
 			}
 		}
-        #endregion
+		#endregion
 
-        #region Retrieve
-        //ok crr 2015.10.19 REVIEW:Replace return value? From concrete class to an abstract or interface
-        //ok crr 2009.10.31
-        /// <summary>
-        /// Retrieve all. Return a IList type. Receive the class type as parameter
-        /// </summary>
-        /// <param name="mapType"></param>
-        /// <returns></returns>
-        public DataView Retrieve(Type mapType)
+		#region Retrieve
+		//ok crr 2015.10.19 REVIEW:Replace return value? From concrete class to an abstract or interface
+		//ok crr 2009.10.31
+		/// <summary>
+		/// Retrieve all. Return a IList type. Receive the class type as parameter
+		/// </summary>
+		/// <param name="mapType"></param>
+		/// <returns></returns>
+		public DataView Retrieve(Type mapType)
 		{
 			try
 			{
@@ -363,15 +389,15 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_RETRIEVE, ex);
 			}
 		}
-        //ok crr 2009.10.31
-        /// <summary>
-        /// Return an persistent object or a list of records using a custom command identifier.
-        /// </summary>
-        /// <param name="mapType"></param>
-        /// <param name="cmdIdentifier"></param>
-        /// <param name="returnCollection"></param>
-        /// <returns></returns>
-        public object Retrieve(Type mapType, string cmdIdentifier, bool returnCollection)
+		//ok crr 2009.10.31
+		/// <summary>
+		/// Return an persistent object or a list of records using a custom command identifier.
+		/// </summary>
+		/// <param name="mapType"></param>
+		/// <param name="cmdIdentifier"></param>
+		/// <param name="returnCollection"></param>
+		/// <returns></returns>
+		public object Retrieve(Type mapType, string cmdIdentifier, bool returnCollection)
 		{
 			try
 			{
@@ -418,15 +444,15 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_RETRIEVE, ex);
 			}
 		}
-        //ok crr 2009.10.31
-        /// <summary>
-        ///Retrieve method for custom retrieve operations giving an OID. 
-        /// </summary>
-        /// <param name="objectId"></param>
-        /// <param name="type"></param>
-        /// <param name="cmdType"></param>
-        /// <returns></returns>
-        public IPersistable Retrieve(ObjectIdentifier objectId, Type type, string cmdType)
+		//ok crr 2009.10.31
+		/// <summary>
+		///Retrieve method for custom retrieve operations giving an OID. 
+		/// </summary>
+		/// <param name="objectId"></param>
+		/// <param name="type"></param>
+		/// <param name="cmdType"></param>
+		/// <returns></returns>
+		public IPersistable Retrieve(ObjectIdentifier objectId, Type type, string cmdType)
 		{
 			try
 			{
@@ -444,15 +470,15 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_RETRIEVE, ex);
 			}
 		}
-        /// <summary>
-        /// Retrieve object with custom criteria and command. Return collection support.
-        /// </summary>
-        /// <param name="criteria"></param>
-        /// <param name="mapType"></param>
-        /// <param name="cmdIdentifier"></param>
-        /// <param name="returnCollection"></param>
-        /// <returns></returns>
-        public object Retrieve(object criteria, Type mapType, string cmdIdentifier, bool returnCollection)
+		/// <summary>
+		/// Retrieve object with custom criteria and command. Return collection support.
+		/// </summary>
+		/// <param name="criteria"></param>
+		/// <param name="mapType"></param>
+		/// <param name="cmdIdentifier"></param>
+		/// <param name="returnCollection"></param>
+		/// <returns></returns>
+		public object Retrieve(object criteria, Type mapType, string cmdIdentifier, bool returnCollection)
 		{
 
 
@@ -535,14 +561,14 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_UPDATE, ex);
 			}
 		}
-        /// <summary>
-        /// Update a persistentObject using a particular Type for mapping.
-        /// </summary>
-        /// <param name="oid"></param>
-        /// <param name="appObject"></param>
-        /// <param name="mapType"></param>
-        /// <returns></returns>
-        public bool Change(ObjectIdentifier oid, object appObject, Type mapType)
+		/// <summary>
+		/// Update a persistentObject using a particular Type for mapping.
+		/// </summary>
+		/// <param name="oid"></param>
+		/// <param name="appObject"></param>
+		/// <param name="mapType"></param>
+		/// <returns></returns>
+		public bool Change(ObjectIdentifier oid, object appObject, Type mapType)
 		{
 			try
 			{
@@ -565,12 +591,12 @@ namespace Klod.Data.PersistenceService
 			}
 		}
 
-        /// <summary>
-        /// Updates a record using multiple object properties.
-        /// </summary>
-        /// <param name="mapType"></param>
-        /// <param name="appObjects"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Updates a record using multiple object properties.
+		/// </summary>
+		/// <param name="mapType"></param>
+		/// <param name="appObjects"></param>
+		/// <returns></returns>
 		public bool Change(Type mapType, IDictionary<string, object> appObjects)
 		{
 			try
@@ -675,17 +701,17 @@ namespace Klod.Data.PersistenceService
 				throw new Exception(CANNOT_DESTROY, ex);
 			}
 		}
-        #endregion
+		#endregion
 
-        #region Multiple operations
-        /// <summary>
-        /// Execute a SQL explicit transaction procedure with multiple objects.
-        /// </summary>
-        /// <param name="mapType"></param>
-        /// <param name="cmdIdentifier"></param>
-        /// <param name="appObjects"></param>
-        /// <returns></returns>
-        public bool ExecuteTransaction(Type mapType, string cmdIdentifier, IDictionary<string, object> appObjects)
+		#region Multiple operations
+		/// <summary>
+		/// Execute a SQL explicit transaction procedure with multiple objects.
+		/// </summary>
+		/// <param name="mapType"></param>
+		/// <param name="cmdIdentifier"></param>
+		/// <param name="appObjects"></param>
+		/// <returns></returns>
+		public bool ExecuteTransaction(Type mapType, string cmdIdentifier, IDictionary<string, object> appObjects)
 		{
 			try
 			{

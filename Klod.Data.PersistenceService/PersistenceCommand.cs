@@ -9,7 +9,7 @@ namespace Klod.Data.PersistenceService
     /// Abstract class that represent a CRUD command.
     /// PersistentCommand: a representation of a command operation to manage persistent objects
     /// in a storage(Database, XML document,...). Implementation of the command pattern.
-    /// Command Pattern: Encapsute a request as an object, letting 
+    /// Command Pattern: Encapsulate a request as an object, letting 
     /// parameterize clients, with different requests, queue (for transactions, by ex.)
     /// or log requests.
     /// </summary>

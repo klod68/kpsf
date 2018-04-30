@@ -6,7 +6,7 @@ namespace Klod.Data.PersistenceService.Cache
     /// <summary>
     /// An object repository.
     /// </summary>
-    public class ObjectCache : IObjectCache
+    internal class ObjectCache : IObjectCache
     {
         private Dictionary<ObjectIdentifier, object> _cache;
 

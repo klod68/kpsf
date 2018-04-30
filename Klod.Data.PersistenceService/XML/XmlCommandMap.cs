@@ -5,10 +5,10 @@ using Klod.Data.PersistenceService.Settings;
 
 namespace Klod.Data.PersistenceService.XML
 {
-    /// <summary>
-    /// Representation of a command element in a map.
-    /// </summary>
-    public class XmlCommandMap : CommandMap
+	/// <summary>
+	/// Representation of a command element in a map.
+	/// </summary>
+	internal class XmlCommandMap : CommandMap
 	{
 		#region variables
 		protected XmlNode _cmdXML;
@@ -98,33 +98,33 @@ namespace Klod.Data.PersistenceService.XML
 
 		public override string GetIDDataType()
 		{
-            try
-            {
-                return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandIdDataTypeAttribute].Value;
-            }
-            catch
-            {
-                return string.Empty;
-            }
+			try
+			{
+				return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandIdDataTypeAttribute].Value;
+			}
+			catch
+			{
+				return string.Empty;
+			}
 		}
 
-        public override string GetProviderCommandType()
-        {
-            try
-            {
-                return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandProviderTypeAttribute].Value;
-            }
-            catch { return string.Empty; }
-
-        }
-        public override string GetReturnTableName()
+		public override string GetProviderCommandType()
 		{
-            try
-            {
-                return _cmdXML.SelectSingleNode(PersistenceServiceConfiguration.Default.CommandReturnTableElement).Attributes[PersistenceServiceConfiguration.Default.ReturnTableNameAttribute].Value;
-            }
-            catch { return string.Empty; }
-        }
+			try
+			{
+				return _cmdXML.Attributes[PersistenceServiceConfiguration.Default.CommandProviderTypeAttribute].Value;
+			}
+			catch { return string.Empty; }
+
+		}
+		public override string GetReturnTableName()
+		{
+			try
+			{
+				return _cmdXML.SelectSingleNode(PersistenceServiceConfiguration.Default.CommandReturnTableElement).Attributes[PersistenceServiceConfiguration.Default.ReturnTableNameAttribute].Value;
+			}
+			catch { return string.Empty; }
+		}
 		public override string GetRetrieveColumn(int index)
 		{
 			try

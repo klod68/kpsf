@@ -70,6 +70,7 @@
     <Compile Include="Cache\ObjectCache.cs" />
     <Compile Include="CommandMap.cs" />
     <Compile Include="CompositeCommand.cs" />
+    <Compile Include="IStorableObjects.cs" />
     <Compile Include="Relational\RelationalDatabaseMapper.cs" />
     <Compile Include="Relational\Parameter.cs" />
     <Compile Include="Resources\Messages_en-US.Designer.cs">
@@ -103,6 +104,7 @@
     </Compile>
     <Compile Include="Exceptions\PessimisticConcurrencyException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StorableObjects.cs" />
     <Compile Include="XML\XmlCommandMap.cs" />
     <Compile Include="XML\XmlMap.cs" />
   </ItemGroup>
