@@ -36,10 +36,10 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
 					}
 					
 					//REFACTORING: must be capable to use same class name with the token property as unique id.
-					if(ObjectCollectionForProcess.ContainsKey(classToken))
-					{
-						ParametersSet[i].Value = ObjectCollectionForProcess[classToken].GetType().GetProperty(CommandMap.GetProperty(i)).GetValue(ObjectCollectionForProcess[classToken], null);
-					}
+					//if(ObjectCollectionForProcess.ContainsKey(classToken))
+					//{
+					//	ParametersSet[i].Value = ObjectCollectionForProcess[classToken].GetType().GetProperty(CommandMap.GetProperty(i)).GetValue(ObjectCollectionForProcess[classToken], null);
+					//}
 				}
 			}
 			catch (Exception ex)

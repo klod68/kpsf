@@ -280,7 +280,7 @@ namespace Klod.Data.PersistenceService
         /// </summary>
         /// <param name="appObjs"></param>
         /// <returns></returns>
-        public ObjectIdentifier Store(IStorableObjects appObjs)
+        public ObjectIdentifier Store(IStorablePackage appObjs)
         {
             try
             {
@@ -288,7 +288,7 @@ namespace Klod.Data.PersistenceService
                 GetMap(appObjs.MapType);
 
                 //make the specific command to execute an Insert
-                _cmd = MakeStoreCommand(_map, appObjs.Bundle);//2 MakeStoreCommand
+                _cmd = MakeStoreCommand(_map, appObjs);//MakeStoreCommand
                 if (_cmd == null)
                     throw new Exception(NO_CMD_MAP);
                     
@@ -769,6 +769,9 @@ namespace Klod.Data.PersistenceService
 		/// <param name="appObjects"></param>
 		/// <returns></returns>
 		protected abstract PersistenceCommand MakeStoreCommand(Map map, IDictionary<string, object> appObjects); //in use
+
+        ///
+        protected abstract PersistenceCommand MakeStoreCommand(Map map, IStorablePackage appObjects);
 
 		/// <summary>
 		/// Make an insert command for multiple object properties and a custom command identifier.
