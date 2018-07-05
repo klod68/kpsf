@@ -771,7 +771,7 @@ namespace Klod.Data.PersistenceService
 		protected abstract PersistenceCommand MakeStoreCommand(Map map, IDictionary<string, object> appObjects); //in use
 
         ///
-        protected abstract PersistenceCommand MakeStoreCommand(Map map, IStorablePackage appObjects);
+        //protected abstract PersistenceCommand MakeStoreCommand(Map map, IStorablePackage appObjects);
 
 		/// <summary>
 		/// Make an insert command for multiple object properties and a custom command identifier.

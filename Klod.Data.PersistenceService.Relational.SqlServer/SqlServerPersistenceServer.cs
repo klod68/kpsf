@@ -74,12 +74,12 @@ namespace Klod.Data.PersistenceService.Relational.SqlServer
             return new SqlServerTransactionCommand(map, cmd, CRUD.Create, appObjects);
 		}
 
-        protected override PersistenceCommand MakeStoreCommand(Map map, IStorablePackage appObjects)
-        {
-            SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            return new SqlServerTransactionCommand(map, cmd, CRUD.Create, appObjects.GetDictionary());
-        }
+        //protected override PersistenceCommand MakeStoreCommand(Map map, IStorablePackage appObjects)
+        //{
+        //    SqlCommand cmd = ((SqlConnection)ProviderConnection).CreateCommand();
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    return new SqlServerTransactionCommand(map, cmd, CRUD.Create, appObjects.GetDictionary());
+        //}
         /// <summary>
         /// Factory method for insert commands, custom command types and multiple properties in multiple objects.
         /// </summary>
