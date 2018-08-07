@@ -1,7 +1,7 @@
 Author:_ Claudio Rivera
 Date:_ 2012-12-30
 ========================
-How did all begins?
+How did all begin?
 -------------------
 The first version of this project was in 2006, when I was thinking to write a 
 Persistence subsystem using the requirements defined by Scott Ambler in his 
